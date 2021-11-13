@@ -1,64 +1,30 @@
-This is a template for the EDAV final project. It is based on the template created with *File, New Project..., New Directory, Book Project using bookdown* in RStudio. 
+W5702 
+Final Project
+Shanzhao Qiao, Yijia Jin
+
+# Are Certain NBA Players Overpaid?
+
+## Introduction
+In this project, we are curious about how NBA teams decide the salaries of their players. Specifically, we raise the following questions to start with:
+1. Which factors play the most important role in deciding player salaries. How are they measured in the salary system (performance - more specific metrics left to be explored), age, race, popularity, changing team or not)
+
+2. Among all nba players, which individuals or groups are most overpaid or underpaid?
+
+3. Which team tends to pay high salaries for their players, why? (to retain existing palyers for another term or to hire player from other, etc)
+
+## Data
+We retrieved the data on player performance from https://www.basketballreference.com/leagues/NBA_2021_advanced.html and retrieved the salary data from https://www.basketball-reference.com/contracts/players.html. Data from basketballreference.com were retrieved from <i>Sportradar</i>, which is also the official stats partner of the NBA.<i>Sportradar</i> offers various scales of data collection systems, and most of times their data journalists would collect NBA data at a venue or from TV. Those collected data would then be uploaded, processed and distributed using different channels. The race data of players is
+collected from https://www.interbasket.net/news/what-percentage-of-nba-players-are-black-howmany-are-white/31018/. 
+
+Note that there is no specific data of each player’s race in authoritative websites, but this link is a blog where the author collect the raw data directly from the NBA  official website, and we scraped the link as our race data. We would double check players’ race as we are combining the two data sets.
+
+The salary would be the dependent variable, while other data, including performance, age, and race would be the independent variables, among which both numerical and categorical variables exist. We could implement the techniques from class to visualize the correlation between independent variables and the dependent variable. There are many associations, correlations, and relationships to be explored in our data. 
+
+## URL
+The book can be found at:
+https://jyjuni.github.io/5702_nba_salaries/
 
 
-## ABSOLUTE ESSENTIALS
-
-*If you have any difficulties or have feedback of any kind, please file an issue.*
-
-### Copy this template
-
-- [ ] 1. Click the green "Use this template" button above.  DO NOT FORK THE REPO. Choose a descriptive name for your repo, such as "federalbudget" or "AIDSdeaths".  (If you change your mind before you do any work, delete your new repo and start over.)
-
-- [ ] 2. In the Description field, write: "Bookdown source files for EDAV final project".
-
-### Set up GitHub Pages	
-- [ ] 1. On the home page of your repo, click Settings. Scroll down to the GitHub pages section and change **Source** from **None** to **main**, change **/ (root)** to **/docs** folder, and click Save. Above the **Source** line, a bar will appear with your book's URL. The bar will initially be blue and indicate that your book is *ready* to be published and will change to green once it is published. Copy the URL. (Note that sometimes there is a delay until your book actually appears at that URL. If it doesn't appear after a few minutes, make a change and commit it to trigger a GitHub Pages build.)	
-
-- [ ] 2. Click the gear button near "About" on the home page of the repo and paste your book URL into the **Website** field that appears on the right.
-
-### Clone the repo
-
-- [ ] 1. Clone your new repo with *File, New Project..., Version Control, Git* in RStudio.
-
-### Edit some key files
-
-- [ ] 1. In `index.Rmd`, change YOUR TITLE HERE to your title.
-
-- [ ] 2. In `index.Rmd`, change YOUR NAMES HERE to your names.
-
-- [ ] 3. In `_bookdown.yml`, change YOUR GITHUB USERNAME to your GitHub username in the two places it appears.
-
-- [ ] 4. In `_bookdown.yml`, change YOUR GITHUB REPO to your GitHub repo name in the two places it appears.
-
-(Note that 3. and 4. provide links to the `.Rmd` files of your project for editing and viewing. If you move your `.Rmd` files you will need to update these file paths. Once your book is rendered, test that the edit (pen) and view (eye) buttons work.)
-
-- [ ] 5. In `_output.yml`, change YOUR SHORT TITLE to a shortened version of your title. (Leave the "after:" line indicating that the book was published with bookdown as is.)
-
-### Render the book
-
-- [ ] 1. Install **bookdown** with `install.packages("bookdown")`. If you already have it, update to the most recent version.
-
-- [ ] 2. Render locally with `bookdown::render_book("index.Rmd")` or clicking the *Build book* button which should appear in the Build tab (in the same pane as Environment, History, Connections, ...).
-
-- [ ] 3. Use `browseURL("docs/index.html")` to view your book locally (or just open `index.html` in a browser).
-
-- [ ] 4. If it looks good, commit and push all changed files to GitHub. 
-
-(You will need to repeat steps 2 and 4 every time you wish to update the book online.)
-
-### Edit README	
-
-Once you've completed these steps, delete the content of this **README** and add a short description of your project with a link to the book URL. It would be appreciated if you add the following to the end:	
-
+## Contribution
 *This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*	
-
-### Demo Video	
-
-A demo video showing how to create a **bookdown book** following these similar instructions: http://bit.ly/fiveminutebookdown Note that this video uses a different template.
-
-### Additional features	
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
-
-
 
