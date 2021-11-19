@@ -122,7 +122,7 @@ missplot <- function(mydata, percent=FALSE){
 
 
 ```{r}
-nba <- read_csv("nba_1.csv")
+nba <- read_csv("docs/nba_1.csv")
 nba$Salary <- as.numeric(nba$Salary)
 nba <- nba %>% replace_with_na(replace = list(Race = "#N/A")) #%>% dplyr::filter(is.na(Race)==FALSE)
 missplot(nba)
