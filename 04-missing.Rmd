@@ -1,1 +1,149 @@
 # Missing values
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(GGally)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(prob)
+library(hexbin)
+library(tidyverse)
+library(naniar)
+library(patchwork)
+```
+
+```{r, include=FALSE}
+missplot <- function(mydata, percent=FALSE){
+  missing_patterns <- data.frame(is.na(mydata)) %>%
+    group_by_all() %>%
+    count(name = "count", sort = TRUE) %>%
+    ungroup()
+  
+  missing_patterns <- missing_patterns %>% rownames_to_column("id")
+  
+  missing_patterns_tidy <- missing_patterns %>%
+    pivot_longer(-c(id,count), names_to = "key", values_to = "missing") %>% 
+    group_by(id) %>% mutate(complete_cases = sum(missing) == 0)
+  
+  # main tile graph
+  p1 <- missing_patterns_tidy %>%
+    ggplot(aes(x = fct_reorder(key, -missing, sum), y = fct_rev(id), fill = missing)) +
+    geom_tile(color = "white", aes(alpha = complete_cases, fill=missing)) +
+    xlab("variable") +
+    ylab("missing pattern") +
+    scale_fill_manual(values= c("grey", "mediumpurple")) +
+    scale_alpha_manual(values= c("FALSE"=0.7), guide = FALSE) +
+    theme_bw() +
+    theme(legend.position = "none", panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+    theme(axis.text.x = element_text(angle = 90))
+  
+  
+  # top graph count by category
+  missing_rowcount <- mydata %>% summarise_all(~ sum(is.na(.))) %>% pivot_longer(everything(), names_to = c("variable"))
+  p2 <-  missing_rowcount %>%
+    ggplot(aes(x = fct_reorder(variable, -value), y = value)) +
+    geom_bar(stat="identity", fill="cornflowerblue", alpha = 0.7)+
+    ggtitle("Missing value patterns") +
+    xlab("") +
+    ylab("num rows \n missing") +
+    theme_bw() +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank(),
+          panel.grid.minor.y = element_blank()) + 
+    scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90))
+  
+  # using the raw missing_patter dataframe, but add one column filter complete_cases 
+  missing_patterns$complete_cases <- ifelse(rowSums(missing_patterns[sapply(missing_patterns, is.logical)]), F, T)
+  
+  # right graph count by patterns
+  p3 <- missing_patterns %>% 
+    ggplot(aes(x = fct_rev(id), y = count)) + 
+    geom_bar(stat="identity", fill="cornflowerblue", aes(alpha = complete_cases)) +
+    coord_flip() +
+    xlab("") +
+    ylab("row count") +
+    scale_alpha_manual(values= c("FALSE"=0.7), guide = "none") +
+    theme_bw() +
+    theme(panel.grid.major.y = element_blank(),
+          panel.grid.minor.y = element_blank()) + 
+    scale_x_discrete(label=abbreviate)
+  
+  
+  if(percent == TRUE){
+    # top graph percent by rows
+    missing_rowcount <- mydata %>% summarise_all(~ sum(is.na(.))/length(.)*100) %>% pivot_longer(everything(), names_to = c("variable"))
+    p2 <-  missing_rowcount %>%
+      ggplot(aes(x = fct_reorder(variable, -value), y = value)) + 
+      geom_bar(stat="identity", fill="cornflowerblue", alpha = 0.7)+
+      ylim(0,100) + 
+      ggtitle("Missing value patterns") +
+      xlab("") + 
+      ylab("% row \n missing") + 
+      theme_bw() + 
+      theme(panel.grid.major.x = element_blank(),
+            panel.grid.minor.x = element_blank(),
+            panel.grid.minor.y = element_blank()) + 
+      scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90))
+    
+    # using the raw missing_patter dataframe, but add one column filter complete_cases 
+    missing_patterns$complete_cases <- ifelse(rowSums(missing_patterns[sapply(missing_patterns, is.logical)]), F, T)
+    missing_patterns %>% dplyr::mutate(percentage = count/nrow(mydata)*100)
+    
+    # right graph count by patterns
+    p3 <- ggplot(missing_patterns, aes(x = fct_rev(id), y = percentage)) + 
+      geom_bar(stat="identity", fill="cornflowerblue", aes(alpha = complete_cases)) +
+      coord_flip() +
+      xlab("") +
+      ylab("% row") + 
+      ylim(0,100) + 
+      scale_alpha_manual(values= c("FALSE"=0.7), guide = "none") +
+      theme_bw() +
+      theme(panel.grid.major.y = element_blank()) + 
+      scale_x_discrete(label=abbreviate)
+    
+  }
+  layout <- "
+    BBBB#
+    AAAAC
+    AAAAC
+    AAAAC
+    AAAAC
+    "
+  p1 %+% p2 %+% p3 %+% 
+    plot_layout(design = layout)
+}
+
+
+
+```
+
+
+```{r}
+nba <- read_csv("nba_1.csv")
+nba$Salary <- as.numeric(nba$Salary)
+nba <- nba %>% replace_with_na(replace = list(Race = "#N/A")) #%>% dplyr::filter(is.na(Race)==FALSE)
+missplot(nba)
+```
+
+From the above missing value patterns plot with counts, it is noticed that there are only missing values in column Race with 150 rows, in column Salary with 115 rows, and in columns 3PAr, FTr, and TS%, with only 1 row. The main missing pattern plot shows that there are only 5 patterns: complete, missing in Race, missing in Salary, missing in Race and Salary, and missing in Race, Salary, FTr, TS%, and 3PAr. As mentioned in the data description part, the way our data set is collected could result in the missing pattern. The reason is that the performance data were from the last season, while the race and salary data are from the list of current NBA players, so players that played in last season but not in this season would be assigned by N/A in their race and salary. There is only one row of missing values in the performance data, which is a good sign considering that performance is the more influential factor in deciding players' salary, and we will only analyze the rows with complete performance data in the seek of comprehension. 
+
+```{r, echo=FALSE}
+nba %>% dplyr::filter(is.na(Race)==TRUE|is.na(Salary)==TRUE) %>% 
+        ggplot(aes(x = WS)) + 
+        geom_histogram(fill = "white", colour = "black", binwidth = 1) + 
+        ggtitle("Distribution of Win Share of Players with Missing Race Data or Salary Data") + 
+        xlab("Win Share")
+```
+
+```{r, echo=FALSE}
+nba %>% dplyr::filter(is.na(Race)==TRUE|is.na(Salary)==TRUE) %>% 
+        ggplot(aes(x = Age)) + 
+        geom_histogram(fill = "white", colour = "black", binwidth = 1) + 
+        ggtitle("Distribution of Age of Players with Missing Race Data or Salary Data") + 
+        xlab("Age")
+```
+
+We know that players that whether retired or were fired has missing values in their races and salary, so we looked into the win share and age of those players. Win Shares is a player statistic which attempts to divvy up credit for team success to the individuals on the team. From the plot above, it is noticed that most players with missing race data has very low win shares that are closed to 0, which correspond to the fact that they were probablly fired because of their poor contribution to the team in the last season. Also, a few players with missing values have high ages values, which is a signal of retirement. 
