@@ -1,1 +1,44 @@
 # Results
+
+## Exploratory Analysis
+
+```{r}
+df <- nba %>% drop_na()
+```
+
+Salary based on race: 
+
+```{r}
+df %>% ggplot(aes(x=Salary, y=reorder(Race, Salary, FUN = median))) + 
+        geom_boxplot() + 
+        ylab('Race') + 
+        ggtitle("Boxplot of Salary in Each Race")
+```
+
+Salary based on team: 
+
+```{r}
+df %>% ggplot(aes(x=Salary, y=reorder(Tm, Salary, FUN = median))) + 
+        geom_boxplot() + 
+        ylab('Team') + 
+        ggtitle("Boxplot of Salary in Each Team")
+```
+```{r, warning=FALSE}
+df %>% ggplot(aes(x = Salary, y = reorder(Tm, Salary, FUN = mean))) +
+  geom_density_ridges(scale = 3)
+```
+
+From the ridge plot above, it is noticed that most teams in the league have a bi-cluster distribution of players' salary in the team, because there are salary caps in the league, so team managers have to distribute the total salary wisely instead of hiring all top players in the league. In fact, the bi-cluster is because in each team, there are a few great players with high salary, but there must be some players that are paid less because of the salary cap. 
+
+Correlation between numerical columns: 
+
+```{r}
+df_dbl <- df %>% select_if(is.numeric) %>% select(-'Rk')
+
+
+corr <- round(cor(df_dbl), 1)
+ggcorrplot(corr, type = "lower",
+   outline.col = "white",
+   ggtheme = ggplot2::theme_gray,
+   colors = c("#6D9EC1", "white", "#E46726"))
+```
