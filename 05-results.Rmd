@@ -42,3 +42,263 @@ ggcorrplot(corr, type = "lower",
    ggtheme = ggplot2::theme_gray,
    colors = c("#6D9EC1", "white", "#E46726"))
 ```
+
+```{r}
+# # multivariate separate barplot (14-2): overall categorical distribution
+# df %>% ggplot(aes(x = Age)) + 
+#         geom_histogram(fill = "white", colour = "black", binwidth = 1) + 
+#         ggtitle("Distribution of Age of Players") + 
+#         xlab("Age")
+library(mltools)
+
+
+
+# df[, c("Age_group","Pos","Race", "Salary")] %>%
+#   pivot_longer(-c(Salary), names_to = "Property", values_to = "Value") %>%
+# # df[, c("Age_group","Tm","Pos","Race", "Salary")] %>%
+# #   mutate(count = n()) %>%
+# #   group_by(Age_group) %>% 
+# #   mutate(c = n(), prop_age = c / count) %>% 
+# #   ungroup()
+#   ggplot(aes(x = Property, y = Value)) +
+#   geom_density()
+
+
+
+# age binned: 23-, 23-28, 29-34, 35+
+df$Age_group <- bin_data(df$Age, bins=c(-Inf, 23, 28, 35, Inf), boundaryType = "lcro]")
+n <- c("Age_group","Pos","Race")        
+
+df_age <- dplyr::count(df, get("Age_group")) %>% rename(Category = `get("Age_group")`) %>%  mutate(prop = n/sum(n))
+df_age$Type = "Age"
+
+df_pos <- dplyr::count(df, get("Pos")) %>% rename(Category = `get("Pos")`) %>%  mutate(prop = n/sum(n))
+df_pos$Type = "Pos"
+
+df_race <- dplyr::count(df, get("Race")) %>% rename(Category = `get("Race")`) %>%  mutate(prop = n/sum(n))
+df_race$Type = "Race"
+
+df_summary <- rbind(df_age, df_pos, df_race)  %>% group_by(Type) %>% 
+  arrange(desc(n), .by_group = TRUE) %>% ungroup() %>% mutate(Category=factor(Category, levels=Category)) 
+
+df_summary %>% 
+  ggplot(aes(x = Category, y = prop, fill=Type)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(label=round(df_summary$prop, digits=3), hjust= -0.15, size=2) +
+    coord_flip() +
+    ylab("Frequency by Percentage") + 
+    xlab("Category") + 
+    ggtitle("Distribution of Categorical Variables") +
+
+    theme_classic()
+
+
+
+```
+
+
+
+We select a few possible factors that might affect salary levels, then use alluvial graph to get a overall sense of their effects to start with. 
+
+```{r}
+# quantile(df$Salary, c(.05, .25, .5, .75, .95)) 
+
+df$Salary_level <- bin_data(df$Salary, bins=c(0, .05, .25, .5, .75, .95, 1), binType="quantile", boundaryType = "lcro]")
+df$G_level <- bin_data(df$G, bins=5, boundaryType = "lcro]")
+df$MP_level <- bin_data(df$MP, bins=5, boundaryType = "lcro]")
+df$PER_level <- bin_data(df$PER, bins=5, boundaryType = "lcro]")
+
+
+```
+
+```{r}
+# alluvial graph
+library(ggalluvial)
+
+# library(ggalluvial)
+# ggplot(as.data.frame(UCBAdmissions),
+# aes(y = Freq, axis1 = Gender, axis2 = Dept, axis3 = Admit)) +
+# geom_alluvium(aes(fill = Gender), width = 1/12) +
+# geom_stratum(width = 1/12, fill = "grey80", color = "grey") +
+# geom_label(stat = "stratum",
+# aes(label = after_stat(stratum))) +
+# scale_x_discrete(expand = c(.05, .05)) +
+# scale_fill_brewer(type = "qual", palette = "Set1") +
+# ggtitle("UC Berkeley admissions and rejections") +
+# theme_void()
+
+df_select <- df[, c("Age_group","Tm","Pos", "Race", "Salary_level")]
+df_select <- df_select %>% group_by(Pos, Age_group, Salary_level) %>%  summarize(Freq = n())
+ggplot(as.data.frame(df_select), aes(y = Freq, axis1=Pos, axis2 = Age_group, axis3=Salary_level)) +
+  geom_alluvium(aes(fill=Salary_level), stat = "alluvium", reverse = FALSE) + 
+  geom_stratum(width = 1/12, fill = "grey80", color = "grey") +
+  geom_label(stat = "stratum",aes(label = after_stat(stratum))) +
+  scale_x_discrete(expand = c(.05, .05))
+## exp:
+
+# |------>|------->|-------------->|------------>|----------->|--------------->|
+# team   pos    age(binned)    G(binned)   MP(binned)  PER(binned)   salary(binned)
+# |------>|------->|-------------->|------------>|----------->|--------------->|
+# color by salary bins
+
+```
+## Continuous Data
+
+### I.Player Efficiency Rating(PER)
+assumption: PER should affect? higher PER lead to increase in salary.
+Player Efficiency Rating is the overall rating of a player's per-minute statistical production. The league average is 15.00 every season.
+
+### total game
+assumption: more games might lead to salary increase
+
+### minutes played and minutes played per game
+assumption: higher minutes per game might lead to salary increase
+
+```{r}
+
+# scatterplot (11): 1. choose a few most imortant factor of theory to scatterplot
+## y: salary 
+## x: {per, g, mp} 
+
+# PER with bin counts
+gPER <- df %>% ggplot(aes(PER, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_bin_2d(bins=20, alpha = .8) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+  scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
+  theme_classic()
+
+
+
+# G
+gG <- df %>% ggplot(aes(G, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+  scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
+  theme_classic()
+
+# G with bin counts
+df %>% ggplot(aes(G, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_bin_2d(bins=20, alpha = .8) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
+    theme_classic()
+
+# MP
+gMP <- df %>% ggplot(aes(MP, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+
+# with bin counts
+df %>% ggplot(aes(MP, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_bin_2d(bins=20, alpha = .8) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
+    theme_classic()
+
+# minutes per game
+df <- df %>% mutate(MPG=MP/G)
+
+gMPG <- df %>% ggplot(aes(MPG, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+
+gridExtra::grid.arrange(gPER, gG, gMP, gMPG, nrow = 2)
+
+```
+
+```{r}
+# scatterplot matrices: analyze pairwise relationships
+my_cols <- c("#00AFBB", "#E7B800", "#FC4E07", "#FC0E07")  
+
+pairs(df_dbl[1:4], pch = 19, col = my_cols[df$Salary_level],  lower.panel = NULL)
+```
+## Combine Continuous Factors With Categorical Factors
+
+### age
+assumption: age should affect. older pays higher.
+### race
+assumption: race might affect. not sure how
+### team
+assumption: team should affect? correlated with geographic? stronger team pays higher/richer team
+### position
+assumption: position should affect? By talking with some friends, common guess: point guard/center.
+
+
+online data: 
+SF - small forward 8.7M
+PF - power forward 7M
+PG - point guard 10.6M
+SG - shoot guard 7.6M
+C - center 8.5M
+
+
+```{r}
+# 2. add color: choose a few (less) possible factors
+## for each scatterplot, add one variable at a time (12-8)
+## color: {age, team, race, position}
+
+gAge <- df %>% ggplot(aes(PER, Salary)) +
+    geom_point(aes(color = Age_group)) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+gTm <- df %>% ggplot(aes(PER, Salary)) +
+    geom_point(aes(color = Tm)) +  
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+gPos <- df %>% ggplot(aes(PER, Salary)) +
+    geom_point(aes(color = Pos)) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+gRace <- df %>% ggplot(aes(PER, Salary)) +
+    geom_point(aes(color = Race)) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+gridExtra::grid.arrange(gAge, gTm, gPos, gRace, nrow = 2)
+```
+
+### geographic patterns
+assumption: geographic should affect? common guess: west coast team / larger cities pays higher
+```{r}
+
+library(statebins)
+df_states <- df %>% as.data.frame() %>% 
+  rownames_to_column("state") %>% 
+  select(state, Mean_Salary)
+
+# Note: direction = 1 switches the order of the fill scale 
+# so darker shades represent higher illiteracy rates
+# (The default is -1).
+
+state_choropleth(df_illiteracy,
+                 title = "State Illiteracy Rates, 1977",
+                 legend = "Percent Illiterate")
+
+statebins(df_illit, value_col="Illiteracy",
+          name = "%", direction = 1) +
+  ggtitle("State Illiteracy Rates, 1977") +
+  theme_statebins()
+```
+
+### Combine Categorical Factors Together
+```{r}
+# faceting: combine two factors from above:
+## color: {age, team, race, position}
+
+# mosaic plot(14-22)
+## 需要分桶(salary level: low, mid, high, etc)
+library(grid)
+library(vcd)
+library(wesanderson)
+
+mosaicplot( ~df$Age_group+df$Salary_level, df$Salary_level, color = wes_palette("GrandBudapest1"), main = 'Age Group vs Salary Level', xlab = 'Age Group', ylab = 'Salary Level')
+
+mosaicplot( ~df$Pos+df$Salary_level, df$Salary_level, color = wes_palette("GrandBudapest1"), main = 'Position vs Salary Level', xlab = 'Position', ylab = 'Salary Level')
+
+(## facet mosaic, 分bin (14-51) 
+## stack barchart 分bin(14-60))
+```
