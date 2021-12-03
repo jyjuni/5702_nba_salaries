@@ -20,7 +20,7 @@ missplot <- function(mydata, percent=FALSE){
     scale_alpha_manual(values= c("FALSE"=0.7), guide = FALSE) +
     theme_bw() +
     theme(legend.position = "none", panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-    scale_x_discrete(label=abbreviate)
+    theme(axis.text.x = element_text(angle = 90))
   
   
   # top graph count by category
@@ -35,7 +35,8 @@ missplot <- function(mydata, percent=FALSE){
     theme(panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
           panel.grid.minor.y = element_blank()) + 
-    scale_x_discrete(label=abbreviate)
+    scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90))
   
   # using the raw missing_patter dataframe, but add one column filter complete_cases 
   missing_patterns$complete_cases <- ifelse(rowSums(missing_patterns[sapply(missing_patterns, is.logical)]), F, T)
@@ -68,14 +69,15 @@ missplot <- function(mydata, percent=FALSE){
       theme(panel.grid.major.x = element_blank(),
             panel.grid.minor.x = element_blank(),
             panel.grid.minor.y = element_blank()) + 
-      scale_x_discrete(label=abbreviate)
+      scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90))
     
-    # using the raw missing_patter dataframe, but add one column filter complete_cases
+    # using the raw missing_patter dataframe, but add one column filter complete_cases 
     missing_patterns$complete_cases <- ifelse(rowSums(missing_patterns[sapply(missing_patterns, is.logical)]), F, T)
+    missing_patterns %>% dplyr::mutate(percentage = count/nrow(mydata)*100)
     
     # right graph count by patterns
-    p3 <- missing_patterns %>% dplyr::mutate(percentage = count/nrow(mydata)*100) %>% 
-      ggplot(aes(x = fct_rev(id), y = percentage)) + 
+    p3 <- ggplot(missing_patterns, aes(x = fct_rev(id), y = percentage)) + 
       geom_bar(stat="identity", fill="cornflowerblue", aes(alpha = complete_cases)) +
       coord_flip() +
       xlab("") +
@@ -94,7 +96,6 @@ missplot <- function(mydata, percent=FALSE){
     AAAAC
     AAAAC
     "
-  p1 + p2 + p3 + 
+  p1 %+% p2 %+% p3 %+% 
     plot_layout(design = layout)
 }
-
