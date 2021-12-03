@@ -1,18 +1,4 @@
-# Missing values
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-library(GGally)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
-library(prob)
-library(hexbin)
-library(tidyverse)
-library(naniar)
-library(patchwork)
-```
-
+# Missing Values
 ```{r, include=FALSE}
 missplot <- function(mydata, percent=FALSE){
   missing_patterns <- data.frame(is.na(mydata)) %>%
@@ -119,18 +105,13 @@ missplot <- function(mydata, percent=FALSE){
 
 
 ```
-
-
 ```{r}
-nba <- read_csv("docs/nba_1.csv")
-nba$Salary <- as.numeric(nba$Salary)
-nba <- nba %>% replace_with_na(replace = list(Race = "#N/A")) #%>% dplyr::filter(is.na(Race)==FALSE)
 missplot(nba)
 ```
 
 From the above missing value patterns plot with counts, it is noticed that there are only missing values in column Race with 150 rows, in column Salary with 115 rows, and in columns 3PAr, FTr, and TS%, with only 1 row. The main missing pattern plot shows that there are only 5 patterns: complete, missing in Race, missing in Salary, missing in Race and Salary, and missing in Race, Salary, FTr, TS%, and 3PAr. As mentioned in the data description part, the way our data set is collected could result in the missing pattern. The reason is that the performance data were from the last season, while the race and salary data are from the list of current NBA players, so players that played in last season but not in this season would be assigned by N/A in their race and salary. There is only one row of missing values in the performance data, which is a good sign considering that performance is the more influential factor in deciding players' salary, and we will only analyze the rows with complete performance data in the seek of comprehension. 
 
-```{r, echo=FALSE}
+```{r}
 nba %>% dplyr::filter(is.na(Race)==TRUE|is.na(Salary)==TRUE) %>% 
         ggplot(aes(x = WS)) + 
         geom_histogram(fill = "white", colour = "black", binwidth = 1) + 
@@ -138,7 +119,7 @@ nba %>% dplyr::filter(is.na(Race)==TRUE|is.na(Salary)==TRUE) %>%
         xlab("Win Share")
 ```
 
-```{r, echo=FALSE}
+```{r}
 nba %>% dplyr::filter(is.na(Race)==TRUE|is.na(Salary)==TRUE) %>% 
         ggplot(aes(x = Age)) + 
         geom_histogram(fill = "white", colour = "black", binwidth = 1) + 
@@ -146,4 +127,7 @@ nba %>% dplyr::filter(is.na(Race)==TRUE|is.na(Salary)==TRUE) %>%
         xlab("Age")
 ```
 
-We know that players that whether retired or were fired has missing values in their races and salary, so we looked into the win share and age of those players. Win Shares is a player statistic which attempts to divvy up credit for team success to the individuals on the team. From the plot above, it is noticed that most players with missing race data has very low win shares that are closed to 0, which correspond to the fact that they were probablly fired because of their poor contribution to the team in the last season. Also, a few players with missing values have high ages values, which is a signal of retirement. 
+
+It is noticed that there are missing values in the race and salary columns. We are curious about the pattern among those missing values.
+
+From the way that the race data is collected, which is described as the discrepancy in the data description section, we know that players that whether retired or were fired has missing values in their races and salary, so we looked into the win share and age of those players. Win Shares is a player statistic which attempts to divvy up credit for team success to the individuals on the team. From the plot above, it is noticed that most players with missing race data has very low win shares that are closed to 0, which correspond to the fact that they were probablly fired because of their poor contribution to the team in the last season. Also, a few players with missing values have high ages values, which is a signal of retirement. 
