@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Interactive component | NBA Salary Analysis</title>
-  <meta name="description" content="Chapter 6 Interactive component | NBA Salary Analysis" />
+  <title>Chapter 5 Interactive component | NBA Salary Analysis</title>
+  <meta name="description" content="Chapter 5 Interactive component | NBA Salary Analysis" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Interactive component | NBA Salary Analysis" />
+  <meta property="og:title" content="Chapter 5 Interactive component | NBA Salary Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Interactive component | NBA Salary Analysis" />
+  <meta name="twitter:title" content="Chapter 5 Interactive component | NBA Salary Analysis" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Yijia Jin, Shanzhao Qiao" />
 
 
-<meta name="date" content="2021-12-12" />
+<meta name="date" content="2021-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -75,20 +75,19 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing Values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<li class="chapter" data-level="3" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>3</b> Missing Values</a></li>
+<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#exploratory-analysis"><i class="fa fa-check"></i><b>5.1</b> Exploratory Analysis</a></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#categorical-data"><i class="fa fa-check"></i><b>5.2</b> Categorical Data</a></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#numeric-data"><i class="fa fa-check"></i><b>5.3</b> Numeric Data</a></li>
-<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#combine-continuous-factors-with-categorical-factors"><i class="fa fa-check"></i><b>5.4</b> Combine Continuous Factors With Categorical Factors</a>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#exploratory-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory Analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#categorical-data"><i class="fa fa-check"></i><b>4.2</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#numeric-data"><i class="fa fa-check"></i><b>4.3</b> Numeric Data</a></li>
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#combine-continuous-factors-with-categorical-factors"><i class="fa fa-check"></i><b>4.4</b> Combine Continuous Factors With Categorical Factors</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="results.html"><a href="results.html#geographic-patterns"><i class="fa fa-check"></i><b>5.4.1</b> geographic patterns</a></li>
+<li class="chapter" data-level="4.4.1" data-path="results.html"><a href="results.html#geographic-patterns"><i class="fa fa-check"></i><b>4.4.1</b> geographic patterns</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -108,9 +107,10 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interactive-component" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
-<p>Try placing your mouse over a state…</p>
+<div id="interactive-component" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Interactive component</h1>
+<p>In this part regarding interactive plot, we decided to further implement the geographic plot(Figure 12), where we would show the distribution of age and salary interval to explore their relationship. We achieved this by presenting the line plot with age on the x-axis and median of salary on the y-axis in each state when clicking the state in the geogrphic plot. The reason we use median of salary instead of maximum is that median could help more general players, while maximum serves only all star players. In this way, we could provide better visualization for agencies and players to choose which team to go when age is taken into consideration.</p>
+<p><em>Try placing your mouse over a state…</em></p>
 <script src="https://d3js.org/d3.v7.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
 <div class="map-container">
@@ -121,6 +121,8 @@
 # Note:
 # We tried to add smooth transition for line plots, but we met some technical difficulties when new data points are added. Since the age data are of varied length for each state, when the sequence lenghth change(especially when it increases), the added part is first appended to the plot, and then starts the transition. Thus, the line sometimes &quot;squeezes&quot; during transition. We searched online for a solution, but found no answers related to this problem. We apologize for this &quot;glitch&quot;. If you know the solution, please help us improve!
 </code></pre>
+<p>Citation:</p>
+<p>The state map function is adapted from the great simple square tile map project: <a href="https://github.com/charliesmart/d3-square-tile-map" class="uri">https://github.com/charliesmart/d3-square-tile-map</a>.</p>
 
 </div>
             </section>

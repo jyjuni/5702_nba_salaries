@@ -11,26 +11,26 @@ By the missing pattern above, we decide to drop all the players with missing val
 
 First of all, we are going to explore within the categorical variables. The first categorical variable we care about is Tm, which represents which team a player belongs to.
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, fig.cap=paste("      Figure 4: Ridge plot of salary distribution in each team. ")}
 df %>% ggplot(aes(x = Salary, y = reorder(Tm, Salary, FUN = mean))) +
-  geom_density_ridges(scale = 3)
+  geom_density_ridges(scale = 3) + 
+  ylab('NBA Team')
 ```
 
-From the ridge plot above, it is noticed that most teams in the league have a bi-cluster distribution of players' salary in the team, because there are salary caps in the league, so team managers have to distribute the total salary wisely instead of hiring all top players in the league. In fact, the bi-cluster is because in each team, there are a few great players with high salary, but there must be some players that are paid less because of the salary cap. 
+From the ridge plot(Figure 4) above, it is noticed that most teams in the league have a bi-cluster distribution of players' salary in the team, because there are salary caps in the league, so team managers have to distribute the total salary wisely instead of hiring all top players in the league. In fact, the bi-cluster is because in each team, there are a few great players with high salary, but there must be some players that are paid less because of the salary cap. 
 
 Overally , the three teams that tend to pay players highest salary are Houston Rocket, Milwaukee Bucks, and Denver Nuggets. 
 
 Then the categorical variables left are race and position. However, we decide to include players' age in this part by binning the numeric variable Age into four bins, which is shown below. In this way we have analyzed all off-court factors, i.e. factors other than players' performance on court. By plotting the overall categorical distribution, it is noticd that more than 80% of players in the NBA league are black or mixed and are in an interval of age between 23 and 35. Also, players are roughly even-distributed in positon, which makes sense because every position shares similar necessity and importance in each team. No team could play with five centers or five point guards on court. 
 
-```{r}
+```{r, fig.cap=paste("      Figure 5: Distribution of categorical variables. ")}
+library(mltools)
+
 # # multivariate separate barplot (14-2): overall categorical distribution
 # df %>% ggplot(aes(x = Age)) + 
 #         geom_histogram(fill = "white", colour = "black", binwidth = 1) + 
 #         ggtitle("Distribution of Age of Players") + 
 #         xlab("Age")
-library(mltools)
-
-
 
 # df[, c("Age_group","Pos","Race", "Salary")] %>%
 #   pivot_longer(-c(Salary), names_to = "Property", values_to = "Value") %>%
@@ -41,7 +41,6 @@ library(mltools)
 # #   ungroup()
 #   ggplot(aes(x = Property, y = Value)) +
 #   geom_density()
-
 
 
 # age binned: 23-, 23-28, 29-34, 35+
@@ -75,9 +74,9 @@ df_summary %>%
 
 ```
 
-By looking closer into the distibution of salary in each race, it is notived that the distributions share similar range and shape, which means that the NBA league and teams in the league have no preference of race, and race is not an influential factor in deciding players' salary. 
+By looking closer into the distibution of salary in each race(Figure 6), it is notived that the distributions share similar range and shape, which means that the NBA league and teams in the league have no preference of race, and race is not an influential factor in deciding players' salary. 
 
-```{r}
+```{r, fig.cap=paste("      Figure 6: Distribution of salary in each race. ")}
 df %>% ggplot(aes(x=Salary, y=reorder(Race, Salary, FUN = median))) + 
         geom_boxplot() + 
         ylab('Race') + 
@@ -93,11 +92,9 @@ df$Salary_level <- bin_data(df$Salary, bins=c(0, .05, .25, .5, .75, .95, 1), bin
 df$G_level <- bin_data(df$G, bins=5, boundaryType = "lcro]")
 df$MP_level <- bin_data(df$MP, bins=5, boundaryType = "lcro]")
 df$PER_level <- bin_data(df$PER, bins=5, boundaryType = "lcro]")
-
-
 ```
 
-```{r}
+```{r, fig.cap=paste("      Figure 7: Alluvial graph of posistion, age interval, and salary interval. ")}
 # alluvial graph
 library(ggalluvial)
 
@@ -129,12 +126,12 @@ ggplot(as.data.frame(df_select), aes(y = Freq, axis1=Pos, axis2 = Age_group, axi
 
 ```
 
-From the alluvial graph above, we noticed that there is no strong correaltion between position and salary level because, as we disscussed above, all positions are important in a team. For the relationship between age and salary level, we can not conclude that the older the player the higher the salary would be, but most players younger than 23 has lowest salary level while most players with highest salary level are above 28 years old. The reason is that young players who just enter the league still need a long time span to show their performance to the team managers and the agencies to be qualified for high salary. However, older players have already built up their profiles among managers and agencies with years of experiences and performaces, and teams tend to pay older players higher because they are not only experienced players that could benefit the whole team on court but also good leaders that could teach and encourage younger players in the team off court. 
+From the alluvial graph above(Figure 7), we noticed that there is no strong correaltion between position and salary level because, as we disscussed above, all positions are important in a team. For the relationship between age and salary level, we can not conclude that the older the player the higher the salary would be, but most players younger than 23 has lowest salary level while most players with highest salary level are above 28 years old. The reason is that young players who just enter the league still need a long time span to show their performance to the team managers and the agencies to be qualified for high salary. However, older players have already built up their profiles among managers and agencies with years of experiences and performaces, and teams tend to pay older players higher because they are not only experienced players that could benefit the whole team on court but also good leaders that could teach and encourage younger players in the team off court. 
 
 ## Numeric Data
 
-First, we plot a parallel coordinates in order to view the general trend of player's performance with different levels of salary. It is noticed that most players' performance data follow a general trend even with different levels of salary, and the pattern is obvious. Therefore, we are more confident that our result could be applied to the whole league instead of only a few teams or players. 
-```{r}
+First, we plot a parallel coordinates(Figure 8) in order to view the general trend of player's performance with different levels of salary. It is noticed that most players' performance data follow a general trend even with different levels of salary, and the pattern is obvious. Therefore, we are more confident that our result could be applied to the whole league instead of only a few teams or players. 
+```{r, warning=FALSE, fig.cap=paste("      Figure 8: Parallel coordinates of numerical variables. ")}
 library(GGally)
 df <- df %>% mutate(MPG=MP/G)
 # cols = c('Age', 'G', 'MP', 'MPG', "PER","TS%","3PAr","FTr","ORB%","DRB%","TRB%","AST%","STL%","BLK%","TOV%","USG%" ,"OWS","DWS","WS","WS/48","OBPM","DBPM","BPM","VORP","Salary" )
@@ -150,9 +147,9 @@ df[,cols] %>%
     theme(legend.position = "bottom", axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
-Then we explore the correlation between those numeric factors, which is shown below. 
+Then we explore the correlation between those numeric factors, which is shown below(Figure 9). 
 
-```{r}
+```{r, fig.cap=paste("      Figure 9: Pairwise correlation matrix between numerical variables. ")}
 df_dbl <- df %>% select_if(is.numeric) %>% select(-'Rk')
 
 
@@ -163,7 +160,7 @@ ggcorrplot(corr, type = "lower",
    colors = c("#6D9EC1", "white", "#E46726"))
 ```
 
-From the correlation matrix, we are able to identify a few factors that are more correlated to players' salary than other factors, which are VORP, OBPM, WS, OWS, USG%, and AST%. However, among those factors, WS and OWS are strongly correalted, which is the reason that winshare is calculated with respect to offensiv win share, OWS here, and defensive winshare, so we would exclude OWS here. The top five factors that are most correlated to the salary is: 
+From the correlation matrix(Figure 9), we are able to identify a few factors that are more correlated to players' salary than other factors, which are VORP, OBPM, WS, OWS, USG%, and AST%. However, among those factors, WS and OWS are strongly correalted, which is the reason that winshare is calculated with respect to offensiv win share, OWS here, and defensive winshare, so we would exclude OWS here. The top five factors that are most correlated to the salary is: 
 
 VORP(Value Over Replacement Player): the marginal utility of a player. 
 OBPM(Offensive Box Plus/Minus): the overall contribution to the team's offense round. 
@@ -171,7 +168,7 @@ WS(Win Share): individual's credit to team success.
 USG%(Usage Rate): the percentage of team plays the player. 
 AST%(Assist Percentage): the percentage of made shots by teammates were assisted by the player.
 
-```{r,warning=FALSE}
+```{r, warning=FALSE, fig.cap=paste("      Figure 10: Scatterplot between salary and its most correlated numerical variables individualy with linear regression abline.  ")}
 
 # scatterplot (11): 1. choose a few most imortant factor of theory to scatterplot
 ## y: salary 
@@ -197,13 +194,13 @@ gWS <- df %>% ggplot(aes(WS, Salary)) +
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
 # USG%
-gUSG <- df %>% ggplot(aes(`USG.`, Salary)) +
+gUSG <- df %>% ggplot(aes(`USG%`, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
 
 # AST%
-gAST <- df %>% ggplot(aes(`AST.`, Salary)) +
+gAST <- df %>% ggplot(aes(`AST%`, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
@@ -212,13 +209,13 @@ gridExtra::grid.arrange(gVORP, gOBPM, gWS, gUSG, gAST,  nrow = 3)
 
 ```
 
-It is noticed that the scatterplots above all present a positive correaltion between players' performance and salary, which means that the more VORP(OBPM, WS, USG%, AST%) one has, the higher salary he is likely to get. And the five factors measuring players' performance on court could be significant factors for managers and agencies to consider when deciding players' salary. 
+It is noticed that the scatterplots above(Figure 10) all present a positive correaltion between players' performance and salary, which means that the more VORP(OBPM, WS, USG%, AST%) one has, the higher salary he is likely to get. And the five factors measuring players' performance on court could be significant factors for managers and agencies to consider when deciding players' salary. 
 
 Among those significant factors, we are curious about whether there is an obvious pattern in the distribution of those factors with respect to the categorical factors, namely age, team, race, and position. We would choose the factor that is most correlated to the salary and the most recognized factor measuring players' performance to explore, the VORP(Value Over Replacement Player). 
 
 ## Combine Continuous Factors With Categorical Factors
 
-```{r}
+```{r, warning=FALSE, fig.cap=paste("      Figure 11: Scatterplot between salary and VORP with linear regression abline and colored by groups from 4 categorical variables.  ")}
 # 2. add color: choose a few (less) possible factors
 ## for each scatterplot, add one variable at a time (12-8)
 ## color: {age, team, race, position}
@@ -242,7 +239,7 @@ gRace <- df %>% ggplot(aes(VORP, Salary)) +
 gridExtra::grid.arrange(gAge, gTm, gPos, gRace, nrow = 2)
 ```
 
-Note that there is no obvious pattern in the distribution of VORP with respect to the categorical variables other than the fact we have already discussed in the categorical factor part, which again demonstrate that the NBA league is a place where players in all ages, all races, all positions, and all teams are treated fairly and could be thrifty both on performance on court and on wealth off court. 
+Note that from Figure 11, there is no obvious pattern in the distribution of VORP with respect to the categorical variables other than the fact we have already discussed in the categorical factor part, which again demonstrate that the NBA league is a place where players in all ages, all races, all positions, and all teams are treated fairly and could be thrifty both on performance on court and on wealth off court. 
 
 ### geographic patterns
 assumption: geographic should affect? common guess: west coast team / larger cities pays higher
@@ -269,7 +266,7 @@ df_states_max <- merge(x = team_count, y = df_states_max, by = "States", all = T
 df_states_min <- df_states %>% as.data.frame()  %>% group_by(States) %>% summarize(Mean_Salary = min(Salary))
 df_states_min <- merge(x = team_count, y = df_states_min, by = "States", all = TRUE)
 ```
-```{r, warning=FALSE}
+```{r, warning=FALSE, fig.cap=paste("      Figure 12: Geographic plot of salary median and maximum in each state in the US. ")}
 library(statebins)
 
 # Note: direction = 1 switches the order of the fill scale 
@@ -290,7 +287,8 @@ gridExtra::grid.arrange(gMedian, gMax, nrow = 1)
 
 ```
 
-By plotting the geographic plot, we could visualize the salary with respect to the state scale in the US. We chose to only inlcude the median and maximum of salary because we believe that the two measurement are suitable for general players and all stars players respectively. For the median, the three state with highest median of salary is LA, UT, and CO, with NBA team New Orleans Pelicans(LA), Utah Jazz(UT), and Denver Nuggets(CO), which are teams to consider for general players because they are more likely to get paid higher than other teams. For the maximum, the three state with highest maximum of salary is CA, TX, and OR, with NBA team Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), Sacramento Kings(CA), Dallas Mavericks(TX), Houston Rockets(TX), San Antonio Spurs(TX), 	and Portland Trail Blazers(OR). By looking back to the distribution of salarys with facet on teams, it is noticed that Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), and Houston Rockets(TX) are good options for all star players because those teams could accept super contract with extremely high salary. 
+By plotting the geographic plot(Figure 12), we could visualize the salary with respect to the state scale in the US. We chose to only inlcude the median and maximum of salary because we believe that the two measurement are suitable for general players and all stars players respectively. For the median, the three state with highest median of salary is LA, UT, and CO, with NBA team New Orleans Pelicans(LA), Utah Jazz(UT), and Denver Nuggets(CO), which are teams to consider for general players because they are more likely to get paid higher than other teams. For the maximum, the three state with highest maximum of salary is CA, TX, and OR, with NBA team Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), Sacramento Kings(CA), Dallas Mavericks(TX), Houston Rockets(TX), San Antonio Spurs(TX), 	and Portland Trail Blazers(OR). By looking back to the distribution of salarys with facet on teams, it is noticed that Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), and Houston Rockets(TX) are good options for all star players because those teams could accept super contract with extremely high salary. 
+
 
 ```{r}
 ## Export Data for Part 6

@@ -1,6 +1,8 @@
 # Interactive component
 
-Try placing your mouse over a state...
+In this part regarding interactive plot, we decided to further implement the geographic plot(Figure 12), where we would show the distribution of age and salary interval to explore their relationship. We achieved this by presenting the line plot with age on the x-axis and median of salary on the y-axis in each state when clicking the state in the geogrphic plot. The reason we use median of salary instead of maximum is that median could help more general players, while maximum serves only all star players. In this way, we could provide better visualization for agencies and players to choose which team to go when age is taken into consideration. 
+
+*Try placing your mouse over a state...*
 
 
 <script src="https://d3js.org/d3.v7.js"></script>
@@ -15,3 +17,8 @@ Try placing your mouse over a state...
 # We tried to add smooth transition for line plots, but we met some technical difficulties when new data points are added. Since the age data are of varied length for each state, when the sequence lenghth change(especially when it increases), the added part is first appended to the plot, and then starts the transition. Thus, the line sometimes "squeezes" during transition. We searched online for a solution, but found no answers related to this problem. We apologize for this "glitch". If you know the solution, please help us improve!
 
 ```
+
+
+Citation: 
+
+The state map function is adapted from the great simple square tile map project: https://github.com/charliesmart/d3-square-tile-map. 
