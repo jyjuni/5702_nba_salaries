@@ -5,24 +5,12 @@
 ```{r}
 df <- nba %>% drop_na()
 ```
+By the missing pattern above, we decide to drop all the players with missing values since we only want to consider those active players in the NBA league this year so that we could give a prediction for next season, and the players with missing values are either retired players or no longer playing in the NBA league. 
 
-Salary based on race: 
+## Categorical Data
 
-```{r}
-df %>% ggplot(aes(x=Salary, y=reorder(Race, Salary, FUN = median))) + 
-        geom_boxplot() + 
-        ylab('Race') + 
-        ggtitle("Boxplot of Salary in Each Race")
-```
+First of all, we are going to explore within the categorical variables. The first categorical variable we care about is Tm, which represents which team a player belongs to.
 
-Salary based on team: 
-
-```{r}
-df %>% ggplot(aes(x=Salary, y=reorder(Tm, Salary, FUN = median))) + 
-        geom_boxplot() + 
-        ylab('Team') + 
-        ggtitle("Boxplot of Salary in Each Team")
-```
 ```{r, warning=FALSE}
 df %>% ggplot(aes(x = Salary, y = reorder(Tm, Salary, FUN = mean))) +
   geom_density_ridges(scale = 3)
@@ -30,18 +18,9 @@ df %>% ggplot(aes(x = Salary, y = reorder(Tm, Salary, FUN = mean))) +
 
 From the ridge plot above, it is noticed that most teams in the league have a bi-cluster distribution of players' salary in the team, because there are salary caps in the league, so team managers have to distribute the total salary wisely instead of hiring all top players in the league. In fact, the bi-cluster is because in each team, there are a few great players with high salary, but there must be some players that are paid less because of the salary cap. 
 
-Correlation between numerical columns: 
+Overally , the three teams that tend to pay players highest salary are Houston Rocket, Milwaukee Bucks, and Denver Nuggets. 
 
-```{r}
-df_dbl <- df %>% select_if(is.numeric) %>% select(-'Rk')
-
-
-corr <- round(cor(df_dbl), 1)
-ggcorrplot(corr, type = "lower",
-   outline.col = "white",
-   ggtheme = ggplot2::theme_gray,
-   colors = c("#6D9EC1", "white", "#E46726"))
-```
+Then the categorical variables left are race and position. However, we decide to include players' age in this part by binning the numeric variable Age into four bins, which is shown below. In this way we have analyzed all off-court factors, i.e. factors other than players' performance on court. By plotting the overall categorical distribution, it is noticd that more than 80% of players in the NBA league are black or mixed and are in an interval of age between 23 and 35. Also, players are roughly even-distributed in positon, which makes sense because every position shares similar necessity and importance in each team. No team could play with five centers or five point guards on court. 
 
 ```{r}
 # # multivariate separate barplot (14-2): overall categorical distribution
@@ -96,9 +75,16 @@ df_summary %>%
 
 ```
 
+By looking closer into the distibution of salary in each race, it is notived that the distributions share similar range and shape, which means that the NBA league and teams in the league have no preference of race, and race is not an influential factor in deciding players' salary. 
 
+```{r}
+df %>% ggplot(aes(x=Salary, y=reorder(Race, Salary, FUN = median))) + 
+        geom_boxplot() + 
+        ylab('Race') + 
+        ggtitle("Boxplot of Salary in Each Race")
+```
 
-We select a few possible factors that might affect salary levels, then use alluvial graph to get a overall sense of their effects to start with. 
+Then we will analyze the effect of age and position. 
 
 ```{r}
 # quantile(df$Salary, c(.05, .25, .5, .75, .95)) 
@@ -130,7 +116,7 @@ library(ggalluvial)
 df_select <- df[, c("Age_group","Tm","Pos", "Race", "Salary_level")]
 df_select <- df_select %>% group_by(Pos, Age_group, Salary_level) %>%  summarize(Freq = n())
 ggplot(as.data.frame(df_select), aes(y = Freq, axis1=Pos, axis2 = Age_group, axis3=Salary_level)) +
-  geom_alluvium(aes(fill=Salary_level), stat = "alluvium", reverse = FALSE) + 
+  geom_alluvium(aes(fill=Salary_level), stat = "alluvium") + 
   geom_stratum(width = 1/12, fill = "grey80", color = "grey") +
   geom_label(stat = "stratum",aes(label = after_stat(stratum))) +
   scale_x_discrete(expand = c(.05, .05))
@@ -142,163 +128,178 @@ ggplot(as.data.frame(df_select), aes(y = Freq, axis1=Pos, axis2 = Age_group, axi
 # color by salary bins
 
 ```
-## Continuous Data
 
-### I.Player Efficiency Rating(PER)
-assumption: PER should affect? higher PER lead to increase in salary.
-Player Efficiency Rating is the overall rating of a player's per-minute statistical production. The league average is 15.00 every season.
+From the alluvial graph above, we noticed that there is no strong correaltion between position and salary level because, as we disscussed above, all positions are important in a team. For the relationship between age and salary level, we can not conclude that the older the player the higher the salary would be, but most players younger than 23 has lowest salary level while most players with highest salary level are above 28 years old. The reason is that young players who just enter the league still need a long time span to show their performance to the team managers and the agencies to be qualified for high salary. However, older players have already built up their profiles among managers and agencies with years of experiences and performaces, and teams tend to pay older players higher because they are not only experienced players that could benefit the whole team on court but also good leaders that could teach and encourage younger players in the team off court. 
 
-### total game
-assumption: more games might lead to salary increase
+## Numeric Data
 
-### minutes played and minutes played per game
-assumption: higher minutes per game might lead to salary increase
+First, we plot a parallel coordinates in order to view the general trend of player's performance with different levels of salary. It is noticed that most players' performance data follow a general trend even with different levels of salary, and the pattern is obvious. Therefore, we are more confident that our result could be applied to the whole league instead of only a few teams or players. 
+```{r}
+library(GGally)
+df <- df %>% mutate(MPG=MP/G)
+# cols = c('Age', 'G', 'MP', 'MPG', "PER","TS%","3PAr","FTr","ORB%","DRB%","TRB%","AST%","STL%","BLK%","TOV%","USG%" ,"OWS","DWS","WS","WS/48","OBPM","DBPM","BPM","VORP","Salary" )
+cols = c('Age', 'G', 'MP', 'MPG', "PER","WS","OBPM","DBPM","BPM","VORP","Salary" ,"Salary_level")
+df[,cols] %>% 
+  GGally::ggparcoord(alphaLines = 0.25, 
+                     scale = "uniminmax",
+                     splineFactor = 10,
+                     groupColumn = "Salary_level"
+                    ) + 
+    xlab("categories") + ylab("cases") + 
+    ggtitle("NBA players' Performance") + 
+    theme(legend.position = "bottom", axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+Then we explore the correlation between those numeric factors, which is shown below. 
+
+```{r}
+df_dbl <- df %>% select_if(is.numeric) %>% select(-'Rk')
+
+
+corr <- round(cor(df_dbl), 1)
+ggcorrplot(corr, type = "lower",
+   outline.col = "white",
+   ggtheme = ggplot2::theme_gray,
+   colors = c("#6D9EC1", "white", "#E46726"))
+```
+
+From the correlation matrix, we are able to identify a few factors that are more correlated to players' salary than other factors, which are VORP, OBPM, WS, OWS, USG%, and AST%. However, among those factors, WS and OWS are strongly correalted, which is the reason that winshare is calculated with respect to offensiv win share, OWS here, and defensive winshare, so we would exclude OWS here. The top five factors that are most correlated to the salary is: 
+
+VORP(Value Over Replacement Player): the marginal utility of a player. 
+OBPM(Offensive Box Plus/Minus): the overall contribution to the team's offense round. 
+WS(Win Share): individual's credit to team success. 
+USG%(Usage Rate): the percentage of team plays the player. 
+AST%(Assist Percentage): the percentage of made shots by teammates were assisted by the player.
 
 ```{r}
 
 # scatterplot (11): 1. choose a few most imortant factor of theory to scatterplot
 ## y: salary 
-## x: {per, g, mp} 
+## x: {VORP, OBPM, WS, USG%, AST%} 
 
-# PER with bin counts
-gPER <- df %>% ggplot(aes(PER, Salary)) +
-    geom_point(color = "blue", alpha = .5) + 
-    geom_bin_2d(bins=20, alpha = .8) + 
-    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
-  scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
-  theme_classic()
-
-
-
-# G
-gG <- df %>% ggplot(aes(G, Salary)) +
+# VORP with bin counts
+gVORP <- df %>% ggplot(aes(VORP, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
   scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
   theme_classic()
 
-# G with bin counts
-df %>% ggplot(aes(G, Salary)) +
-    geom_point(color = "blue", alpha = .5) + 
-    geom_bin_2d(bins=20, alpha = .8) + 
-    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
-    scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
-    theme_classic()
-
-# MP
-gMP <- df %>% ggplot(aes(MP, Salary)) +
+# OBPM
+gOBPM <- df %>% ggplot(aes(OBPM, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
-    theme_classic()
+  scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
+  theme_classic()
 
-# with bin counts
-df %>% ggplot(aes(MP, Salary)) +
+# WS
+gWS <- df %>% ggplot(aes(WS, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
-    geom_bin_2d(bins=20, alpha = .8) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
-    scale_fill_gradient(low = "#dddddd", high = "#09005F") + 
     theme_classic()
-
-# minutes per game
-df <- df %>% mutate(MPG=MP/G)
-
-gMPG <- df %>% ggplot(aes(MPG, Salary)) +
+# USG%
+gUSG <- df %>% ggplot(aes(`USG%`, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
 
-gridExtra::grid.arrange(gPER, gG, gMP, gMPG, nrow = 2)
+# AST%
+gAST <- df %>% ggplot(aes(`AST%`, Salary)) +
+    geom_point(color = "blue", alpha = .5) + 
+    geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
+    theme_classic()
+
+gridExtra::grid.arrange(gVORP, gOBPM, gWS, gUSG, gAST,  nrow = 3)
 
 ```
 
-```{r}
-# scatterplot matrices: analyze pairwise relationships
-my_cols <- c("#00AFBB", "#E7B800", "#FC4E07", "#FC0E07")  
+It is noticed that the scatterplots above all present a positive correaltion between players' performance and salary, which means that the more VORP(OBPM, WS, USG%, AST%) one has, the higher salary he is likely to get. And the five factors measuring players' performance on court could be significant factors for managers and agencies to consider when deciding players' salary. 
 
-pairs(df_dbl[1:4], pch = 19, col = my_cols[df$Salary_level],  lower.panel = NULL)
-```
+Among those significant factors, we are curious about whether there is an obvious pattern in the distribution of those factors with respect to the categorical factors, namely age, team, race, and position. We would choose the factor that is most correlated to the salary and the most recognized factor measuring players' performance to explore, the VORP(Value Over Replacement Player). 
+
 ## Combine Continuous Factors With Categorical Factors
-
-### age
-assumption: age should affect. older pays higher.
-### race
-assumption: race might affect. not sure how
-### team
-assumption: team should affect? correlated with geographic? stronger team pays higher/richer team
-### position
-assumption: position should affect? By talking with some friends, common guess: point guard/center.
-
-
-online data: 
-SF - small forward 8.7M
-PF - power forward 7M
-PG - point guard 10.6M
-SG - shoot guard 7.6M
-C - center 8.5M
-
 
 ```{r}
 # 2. add color: choose a few (less) possible factors
 ## for each scatterplot, add one variable at a time (12-8)
 ## color: {age, team, race, position}
 
-gAge <- df %>% ggplot(aes(PER, Salary)) +
+gAge <- df %>% ggplot(aes(VORP, Salary)) +
     geom_point(aes(color = Age_group)) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
-gTm <- df %>% ggplot(aes(PER, Salary)) +
+gTm <- df %>% ggplot(aes(VORP, Salary)) +
     geom_point(aes(color = Tm)) +  
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
-gPos <- df %>% ggplot(aes(PER, Salary)) +
+gPos <- df %>% ggplot(aes(VORP, Salary)) +
     geom_point(aes(color = Pos)) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
-gRace <- df %>% ggplot(aes(PER, Salary)) +
+gRace <- df %>% ggplot(aes(VORP, Salary)) +
     geom_point(aes(color = Race)) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
 gridExtra::grid.arrange(gAge, gTm, gPos, gRace, nrow = 2)
 ```
 
+Note that there is no obvious pattern in the distribution of VORP with respect to the categorical variables other than the fact we have already discussed in the categorical factor part, which again demonstrate that the NBA league is a place where players in all ages, all races, all positions, and all teams are treated fairly and could be thrifty both on performance on court and on wealth off court. 
+
 ### geographic patterns
 assumption: geographic should affect? common guess: west coast team / larger cities pays higher
 ```{r}
+#import and merge  state stata
+team_abbrev <- read_csv("team_abbrev.csv")
+team_state <- read_csv("team_states.csv")
+df_team <- merge(x = team_abbrev, y = team_state, by = "Team", all.x = TRUE)
+df_states <- merge(x = df, y = df_team, by.x = "Tm", by.y = "Abbr")
+sum(is.na(df_states))
 
+df_states_means <- df_states %>% as.data.frame()  %>% group_by(States) %>% summarize(Mean_Salary = mean(Salary))
+team_count <- read_csv("states_teamcounts.csv")
+df_states_means <- merge(x = team_count, y = df_states_means, by = "States", all = TRUE)
+
+
+df_states_median <- df_states %>% as.data.frame()  %>% group_by(States) %>% summarize(Mean_Salary = median(Salary))
+df_states_median <- merge(x = team_count, y = df_states_median, by = "States", all = TRUE)
+
+df_states_max <- df_states %>% as.data.frame()  %>% group_by(States) %>% summarize(Mean_Salary = max(Salary))
+df_states_max <- merge(x = team_count, y = df_states_max, by = "States", all = TRUE)
+
+
+df_states_min <- df_states %>% as.data.frame()  %>% group_by(States) %>% summarize(Mean_Salary = min(Salary))
+df_states_min <- merge(x = team_count, y = df_states_min, by = "States", all = TRUE)
+```
+```{r, warning=FALSE}
 library(statebins)
-df_states <- df %>% as.data.frame() %>% 
-  rownames_to_column("state") %>% 
-  select(state, Mean_Salary)
 
 # Note: direction = 1 switches the order of the fill scale 
 # so darker shades represent higher illiteracy rates
 # (The default is -1).
 
-state_choropleth(df_illiteracy,
-                 title = "State Illiteracy Rates, 1977",
-                 legend = "Percent Illiterate")
+gMedian <- statebins(df_states_median, state_col = "States" , value_col="Mean_Salary",
+          name = "median salary", direction = 1, na_label = "white") +
+  ggtitle("State Median NBA Salary Rates") +
+  theme_statebins(base_size = 5)
 
-statebins(df_illit, value_col="Illiteracy",
-          name = "%", direction = 1) +
-  ggtitle("State Illiteracy Rates, 1977") +
-  theme_statebins()
+gMax <- statebins(df_states_max, state_col = "States" , value_col="Mean_Salary",
+          name = "maximum salary", direction = 1, na_label = "white") +
+  ggtitle("State Max NBA Salary Rates") +
+  theme_statebins(base_size = 5)
+
+gridExtra::grid.arrange(gMedian, gMax, nrow = 1)
+
 ```
 
-### Combine Categorical Factors Together
+By plotting the geographic plot, we could visualize the salary with respect to the state scale in the US. We chose to only inlcude the median and maximum of salary because we believe that the two measurement are suitable for general players and all stars players respectively. For the median, the three state with highest median of salary is LA, UT, and CO, with NBA team New Orleans Pelicans(LA), Utah Jazz(UT), and Denver Nuggets(CO), which are teams to consider for general players because they are more likely to get paid higher than other teams. For the maximum, the three state with highest maximum of salary is CA, TX, and OR, with NBA team Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), Sacramento Kings(CA), Dallas Mavericks(TX), Houston Rockets(TX), San Antonio Spurs(TX), 	and Portland Trail Blazers(OR). By looking back to the distribution of salarys with facet on teams, it is noticed that Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), and Houston Rockets(TX) are good options for all star players because those teams could accept super contract with extremely high salary. 
+
+## Export Data for Part 6
 ```{r}
-# faceting: combine two factors from above:
-## color: {age, team, race, position}
+# calculate salary for each age per state
+df_states_age_median <- df_states %>% as.data.frame()  %>% group_by(States,Age) %>% summarize(Mean_Salary = median(Salary))
+df_states_age_max <- df_states %>% as.data.frame()  %>% group_by(States,Age) %>% summarize(Mean_Salary = max(Salary))
 
-# mosaic plot(14-22)
-## 需要分桶(salary level: low, mid, high, etc)
-library(grid)
-library(vcd)
-library(wesanderson)
-
-mosaicplot( ~df$Age_group+df$Salary_level, df$Salary_level, color = wes_palette("GrandBudapest1"), main = 'Age Group vs Salary Level', xlab = 'Age Group', ylab = 'Salary Level')
-
-mosaicplot( ~df$Pos+df$Salary_level, df$Salary_level, color = wes_palette("GrandBudapest1"), main = 'Position vs Salary Level', xlab = 'Position', ylab = 'Salary Level')
-
-(## facet mosaic, 分bin (14-51) 
-## stack barchart 分bin(14-60))
+write.csv(df_states_median,"states_median.csv", row.names = FALSE)
+write.csv(df_states_median,"states_max.csv", row.names = FALSE)
+write.csv(df_states_age_median,"states_age_median.csv", row.names = FALSE)
+write.csv(df_states_age_max,"states_age_max.csv", row.names = FALSE)
 ```

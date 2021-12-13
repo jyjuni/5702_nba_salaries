@@ -1,3 +1,15 @@
 # Interactive component
 
+Try placing your mouse over a state...
 
+
+<script src="https://d3js.org/d3.v7.js"></script>
+  <div class="map-container"></div>
+<script src="https://raw.githubusercontent.com/jyjuni/5702_nba_salaries/main/docs/square-map.js"></script>
+
+```
+
+# Note:
+# We tried to add smooth transition for line plots, but we met some technical difficulties when new data points are added. Since the age data are of varied length for each state, when the sequence lenghth change(especially when it increases), the added part is first appended to the plot, and then starts the transition. Thus, the line sometimes "squeezes" during transition. We searched online for a solution, but found no answers related to this problem. We apologize for this "glitch". If you know the solution, please help us improve!
+
+```
