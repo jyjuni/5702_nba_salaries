@@ -12,9 +12,9 @@ fig:unnamed-chunk-20
 fig:unnamed-chunk-22
 introduction
 data-sources
+data-transformation
 missing-values
 results
-exploratory-analysis
 categorical-data
 numeric-data
 combine-continuous-factors-with-categorical-factors

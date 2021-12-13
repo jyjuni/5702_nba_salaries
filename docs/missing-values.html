@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Missing Values | NBA Salary Analysis</title>
-  <meta name="description" content="Chapter 3 Missing Values | NBA Salary Analysis" />
+  <title>Chapter 4 Missing Values | NBA Salary Analysis</title>
+  <meta name="description" content="Chapter 4 Missing Values | NBA Salary Analysis" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Missing Values | NBA Salary Analysis" />
+  <meta property="og:title" content="Chapter 4 Missing Values | NBA Salary Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Missing Values | NBA Salary Analysis" />
+  <meta name="twitter:title" content="Chapter 4 Missing Values | NBA Salary Analysis" />
   
   
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-sources.html"/>
+<link rel="prev" href="data-transformation.html"/>
 <link rel="next" href="results.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -75,19 +75,17 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>3</b> Missing Values</a></li>
-<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing Values</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#exploratory-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory Analysis</a></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#categorical-data"><i class="fa fa-check"></i><b>4.2</b> Categorical Data</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#numeric-data"><i class="fa fa-check"></i><b>4.3</b> Numeric Data</a></li>
-<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#combine-continuous-factors-with-categorical-factors"><i class="fa fa-check"></i><b>4.4</b> Combine Continuous Factors With Categorical Factors</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="results.html"><a href="results.html#geographic-patterns"><i class="fa fa-check"></i><b>4.4.1</b> geographic patterns</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#categorical-data"><i class="fa fa-check"></i><b>5.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#numeric-data"><i class="fa fa-check"></i><b>5.2</b> Numeric Data</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#combine-continuous-factors-with-categorical-factors"><i class="fa fa-check"></i><b>5.3</b> Combine Continuous Factors With Categorical Factors</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#geographic-patterns"><i class="fa fa-check"></i><b>5.4</b> Geographic Patterns</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
-<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -107,29 +105,29 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="missing-values" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Missing Values</h1>
+<div id="missing-values" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Missing Values</h1>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" alt="      Figure 1: Missing value pattern plot of the NBA data. " width="672" />
+<img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" alt="Missing value pattern plot of the NBA data. " width="672" />
 <p class="caption">
-Figure 3.1:  Figure 1: Missing value pattern plot of the NBA data.
+Figure 4.1: Missing value pattern plot of the NBA data.
 </p>
 </div>
-<p>From the above missing value patterns plot with counts(Figure 1), it is noticed that there are only missing values in column Race with 150 rows, in column Salary with 115 rows, and in columns 3PAr, FTr, and TS%, with only 1 row. The main missing pattern plot shows that there are only 5 patterns: complete, missing in Race, missing in Salary, missing in Race and Salary, and missing in Race, Salary, FTr, TS%, and 3PAr. As mentioned in the data description part, the way our data set is collected could result in the missing pattern. The reason is that the performance data were from the last season, while the race and salary data are from the list of current NBA players, so players that played in last season but not in this season would be assigned by N/A in their race and salary. There is only one row of missing values in the performance data, which is a good sign considering that performance is the more influential factor in deciding players’ salary, and we will only analyze the rows with complete performance data in the seek of comprehension.</p>
+<p>From the above missing value patterns plot with counts(Figure 4.1), it is noticed that there are only missing values in column Race with 150 rows, in column Salary with 115 rows, and in columns 3PAr, FTr, and TS%, with only 1 row. The main missing pattern plot shows that there are only 5 patterns: complete, missing in Race, missing in Salary, missing in Race and Salary, and missing in Race, Salary, FTr, TS%, and 3PAr. As mentioned in the data description part, the way our data set is collected could result in the missing pattern. The reason is that the performance data were from the last season, while the race and salary data are from the list of current NBA players, so players that played in last season but not in this season would be assigned by N/A in their race and salary. There is only one row of missing values in the performance data, which is a good sign considering that performance is the more influential factor in deciding players’ salary, and we will only analyze the rows with complete performance data in the seek of comprehension.</p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" alt="      Figure 2: Distribution of win share of players with missing race data or salary data. " width="672" />
+<img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" alt="Distribution of win share of players with missing race data or salary data. " width="672" />
 <p class="caption">
-Figure 3.2:  Figure 2: Distribution of win share of players with missing race data or salary data.
+Figure 4.2: Distribution of win share of players with missing race data or salary data.
 </p>
 </div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" alt="      Figure 3: Distribution of age of players with missing race data or salary data. " width="672" />
+<img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" alt="Distribution of age of players with missing race data or salary data. " width="672" />
 <p class="caption">
-Figure 3.3:  Figure 3: Distribution of age of players with missing race data or salary data.
+Figure 4.3: Distribution of age of players with missing race data or salary data.
 </p>
 </div>
 <p>It is noticed that there are missing values in the race and salary columns. We are curious about the pattern among those missing values.</p>
-<p>From the way that the race data is collected, which is described as the discrepancy in the data description section, we know that players that whether retired or were fired has missing values in their races and salary, so we looked into the win share and age of those players. Win Shares is a player statistic which attempts to divvy up credit for team success to the individuals on the team. From the plot(Figure 2 and Figure 3) above, it is noticed that most players with missing race data has very low win shares that are closed to 0, which correspond to the fact that they were probably fired because of their poor contribution to the team in the last season. Also, a few players with missing values have high ages values, which is a signal of retirement.</p>
+<p>From the way that the race data is collected, which is described as the discrepancy in the data description section, we know that players that whether retired or were fired has missing values in their races and salary, so we looked into the win share and age of those players. Win Shares is a player statistic which attempts to divvy up credit for team success to the individuals on the team. From the plot(Figure 4.2 and Figure 4.3) above, it is noticed that most players with missing race data has very low win shares that are closed to 0, which correspond to the fact that they were probably fired because of their poor contribution to the team in the last season. Also, a few players with missing values have high ages values, which is a signal of retirement.</p>
 
 </div>
             </section>
@@ -137,7 +135,7 @@ Figure 3.3:  Figure 3: Distribution of age of players with missing race data or 
           </div>
         </div>
       </div>
-<a href="data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
