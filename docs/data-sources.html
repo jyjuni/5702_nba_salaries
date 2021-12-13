@@ -24,7 +24,7 @@
 <meta name="author" content="Yijia Jin, Shanzhao Qiao" />
 
 
-<meta name="date" content="2021-11-18" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -76,8 +76,17 @@
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing Values</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#exploratory-analysis"><i class="fa fa-check"></i><b>5.1</b> Exploratory Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#categorical-data"><i class="fa fa-check"></i><b>5.2</b> Categorical Data</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#numeric-data"><i class="fa fa-check"></i><b>5.3</b> Numeric Data</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#combine-continuous-factors-with-categorical-factors"><i class="fa fa-check"></i><b>5.4</b> Combine Continuous Factors With Categorical Factors</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="results.html"><a href="results.html#geographic-patterns"><i class="fa fa-check"></i><b>5.4.1</b> geographic patterns</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -101,6 +110,10 @@
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<p>We retrieved the data on player performance from <a href="https://www.basketball-reference.com/leagues/NBA_2021_advanced.html" class="uri">https://www.basketball-reference.com/leagues/NBA_2021_advanced.html</a> and retrieved the salary data from <a href="https://www.basketball-reference.com/contracts/players.html" class="uri">https://www.basketball-reference.com/contracts/players.html</a>. Data from basketball-reference.com were retrieved from Sportradar, which is also the official stats partner of the NBA. Sportradar offers various scales of data collection systems, and most of times their data journalists would collect NBA data at a venue or from TV. Those collected data would then be uploaded, processed and distributed using different channels. The race data of players is collected from <a href="https://www.interbasket.net/news/what-percentage-of-nba-players-are-black-how-many-are-white/31018/" class="uri">https://www.interbasket.net/news/what-percentage-of-nba-players-are-black-how-many-are-white/31018/</a>. Note that there is no specific data of each player’s race in authoritative websites, but this link is a blog where the author collect the raw data directly from the NBA official website, and we scraped the link as our race data. We would double check players’ race as we are combining the two data sets.
+The salary would be the dependent variable, while other data, including performance, age, and race would be the independent variables, among which both numerical and categorical variables exist. After combining the two datasets, we had a dataset with 540 observations and
+30 variables, including 1 dependent variable as salary and 29 independent variables.</p>
+<p>Notice that there is a discrepancy between the number of players in the performance data and race, as well as salary, data because the performance data were from the last season, while the race and salary data are from the list of current NBA players, so players that played in last season but not in this season would be assigned by N/A in their race and salary.</p>
 
 </div>
             </section>

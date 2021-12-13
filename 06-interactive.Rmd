@@ -4,8 +4,10 @@ Try placing your mouse over a state...
 
 
 <script src="https://d3js.org/d3.v7.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+
   <div class="map-container"></div>
-<script src="https://raw.githubusercontent.com/jyjuni/5702_nba_salaries/main/docs/square-map.js"></script>
+<script src="square-map.js"></script>
 
 ```
 

@@ -171,7 +171,7 @@ WS(Win Share): individual's credit to team success.
 USG%(Usage Rate): the percentage of team plays the player. 
 AST%(Assist Percentage): the percentage of made shots by teammates were assisted by the player.
 
-```{r}
+```{r,warning=FALSE}
 
 # scatterplot (11): 1. choose a few most imortant factor of theory to scatterplot
 ## y: salary 
@@ -197,13 +197,13 @@ gWS <- df %>% ggplot(aes(WS, Salary)) +
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
 # USG%
-gUSG <- df %>% ggplot(aes(`USG%`, Salary)) +
+gUSG <- df %>% ggplot(aes(`USG.`, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
 
 # AST%
-gAST <- df %>% ggplot(aes(`AST%`, Salary)) +
+gAST <- df %>% ggplot(aes(`AST.`, Salary)) +
     geom_point(color = "blue", alpha = .5) + 
     geom_smooth(method = "lm", se=FALSE, colour="red", fullrange=TRUE, size=0.5) +
     theme_classic()
@@ -248,14 +248,14 @@ Note that there is no obvious pattern in the distribution of VORP with respect t
 assumption: geographic should affect? common guess: west coast team / larger cities pays higher
 ```{r}
 #import and merge  state stata
-team_abbrev <- read_csv("team_abbrev.csv")
-team_state <- read_csv("team_states.csv")
+team_abbrev <- read_csv("docs/team_abbrev.csv")
+team_state <- read_csv("docs/team_states.csv")
 df_team <- merge(x = team_abbrev, y = team_state, by = "Team", all.x = TRUE)
 df_states <- merge(x = df, y = df_team, by.x = "Tm", by.y = "Abbr")
 sum(is.na(df_states))
 
 df_states_means <- df_states %>% as.data.frame()  %>% group_by(States) %>% summarize(Mean_Salary = mean(Salary))
-team_count <- read_csv("states_teamcounts.csv")
+team_count <- read_csv("docs/states_teamcounts.csv")
 df_states_means <- merge(x = team_count, y = df_states_means, by = "States", all = TRUE)
 
 
@@ -292,14 +292,15 @@ gridExtra::grid.arrange(gMedian, gMax, nrow = 1)
 
 By plotting the geographic plot, we could visualize the salary with respect to the state scale in the US. We chose to only inlcude the median and maximum of salary because we believe that the two measurement are suitable for general players and all stars players respectively. For the median, the three state with highest median of salary is LA, UT, and CO, with NBA team New Orleans Pelicans(LA), Utah Jazz(UT), and Denver Nuggets(CO), which are teams to consider for general players because they are more likely to get paid higher than other teams. For the maximum, the three state with highest maximum of salary is CA, TX, and OR, with NBA team Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), Sacramento Kings(CA), Dallas Mavericks(TX), Houston Rockets(TX), San Antonio Spurs(TX), 	and Portland Trail Blazers(OR). By looking back to the distribution of salarys with facet on teams, it is noticed that Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), and Houston Rockets(TX) are good options for all star players because those teams could accept super contract with extremely high salary. 
 
-## Export Data for Part 6
 ```{r}
+## Export Data for Part 6
+
 # calculate salary for each age per state
 df_states_age_median <- df_states %>% as.data.frame()  %>% group_by(States,Age) %>% summarize(Mean_Salary = median(Salary))
 df_states_age_max <- df_states %>% as.data.frame()  %>% group_by(States,Age) %>% summarize(Mean_Salary = max(Salary))
 
-write.csv(df_states_median,"states_median.csv", row.names = FALSE)
-write.csv(df_states_median,"states_max.csv", row.names = FALSE)
-write.csv(df_states_age_median,"states_age_median.csv", row.names = FALSE)
-write.csv(df_states_age_max,"states_age_max.csv", row.names = FALSE)
+write.csv(df_states_median,"docs/states_median.csv", row.names = FALSE)
+write.csv(df_states_median,"docs/states_max.csv", row.names = FALSE)
+write.csv(df_states_age_median,"docs/states_age_median.csv", row.names = FALSE)
+write.csv(df_states_age_max,"docs/states_age_max.csv", row.names = FALSE)
 ```

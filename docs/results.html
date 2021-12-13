@@ -24,7 +24,7 @@
 <meta name="author" content="Yijia Jin, Shanzhao Qiao" />
 
 
-<meta name="date" content="2021-11-18" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -76,8 +76,17 @@
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing Values</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#exploratory-analysis"><i class="fa fa-check"></i><b>5.1</b> Exploratory Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#categorical-data"><i class="fa fa-check"></i><b>5.2</b> Categorical Data</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#numeric-data"><i class="fa fa-check"></i><b>5.3</b> Numeric Data</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#combine-continuous-factors-with-categorical-factors"><i class="fa fa-check"></i><b>5.4</b> Combine Continuous Factors With Categorical Factors</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="results.html"><a href="results.html#geographic-patterns"><i class="fa fa-check"></i><b>5.4.1</b> geographic patterns</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -101,7 +110,53 @@
             <section class="normal" id="section-">
 <div id="results" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="exploratory-analysis" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Exploratory Analysis</h2>
+<p>By the missing pattern above, we decide to drop all the players with missing values since we only want to consider those active players in the NBA league this year so that we could give a prediction for next season, and the players with missing values are either retired players or no longer playing in the NBA league.</p>
+</div>
+<div id="categorical-data" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Categorical Data</h2>
+<p>First of all, we are going to explore within the categorical variables. The first categorical variable we care about is Tm, which represents which team a player belongs to.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>From the ridge plot above, it is noticed that most teams in the league have a bi-cluster distribution of players’ salary in the team, because there are salary caps in the league, so team managers have to distribute the total salary wisely instead of hiring all top players in the league. In fact, the bi-cluster is because in each team, there are a few great players with high salary, but there must be some players that are paid less because of the salary cap.</p>
+<p>Overally , the three teams that tend to pay players highest salary are Houston Rocket, Milwaukee Bucks, and Denver Nuggets.</p>
+<p>Then the categorical variables left are race and position. However, we decide to include players’ age in this part by binning the numeric variable Age into four bins, which is shown below. In this way we have analyzed all off-court factors, i.e. factors other than players’ performance on court. By plotting the overall categorical distribution, it is noticd that more than 80% of players in the NBA league are black or mixed and are in an interval of age between 23 and 35. Also, players are roughly even-distributed in positon, which makes sense because every position shares similar necessity and importance in each team. No team could play with five centers or five point guards on court.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>By looking closer into the distibution of salary in each race, it is notived that the distributions share similar range and shape, which means that the NBA league and teams in the league have no preference of race, and race is not an influential factor in deciding players’ salary.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Then we will analyze the effect of age and position.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>From the alluvial graph above, we noticed that there is no strong correaltion between position and salary level because, as we disscussed above, all positions are important in a team. For the relationship between age and salary level, we can not conclude that the older the player the higher the salary would be, but most players younger than 23 has lowest salary level while most players with highest salary level are above 28 years old. The reason is that young players who just enter the league still need a long time span to show their performance to the team managers and the agencies to be qualified for high salary. However, older players have already built up their profiles among managers and agencies with years of experiences and performaces, and teams tend to pay older players higher because they are not only experienced players that could benefit the whole team on court but also good leaders that could teach and encourage younger players in the team off court.</p>
+</div>
+<div id="numeric-data" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Numeric Data</h2>
+<p>First, we plot a parallel coordinates in order to view the general trend of player’s performance with different levels of salary. It is noticed that most players’ performance data follow a general trend even with different levels of salary, and the pattern is obvious. Therefore, we are more confident that our result could be applied to the whole league instead of only a few teams or players.
+<img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Then we explore the correlation between those numeric factors, which is shown below.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>From the correlation matrix, we are able to identify a few factors that are more correlated to players’ salary than other factors, which are VORP, OBPM, WS, OWS, USG%, and AST%. However, among those factors, WS and OWS are strongly correalted, which is the reason that winshare is calculated with respect to offensiv win share, OWS here, and defensive winshare, so we would exclude OWS here. The top five factors that are most correlated to the salary is:</p>
+<p>VORP(Value Over Replacement Player): the marginal utility of a player.
+OBPM(Offensive Box Plus/Minus): the overall contribution to the team’s offense round.
+WS(Win Share): individual’s credit to team success.
+USG%(Usage Rate): the percentage of team plays the player.
+AST%(Assist Percentage): the percentage of made shots by teammates were assisted by the player.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>It is noticed that the scatterplots above all present a positive correaltion between players’ performance and salary, which means that the more VORP(OBPM, WS, USG%, AST%) one has, the higher salary he is likely to get. And the five factors measuring players’ performance on court could be significant factors for managers and agencies to consider when deciding players’ salary.</p>
+<p>Among those significant factors, we are curious about whether there is an obvious pattern in the distribution of those factors with respect to the categorical factors, namely age, team, race, and position. We would choose the factor that is most correlated to the salary and the most recognized factor measuring players’ performance to explore, the VORP(Value Over Replacement Player).</p>
+</div>
+<div id="combine-continuous-factors-with-categorical-factors" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Combine Continuous Factors With Categorical Factors</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Note that there is no obvious pattern in the distribution of VORP with respect to the categorical variables other than the fact we have already discussed in the categorical factor part, which again demonstrate that the NBA league is a place where players in all ages, all races, all positions, and all teams are treated fairly and could be thrifty both on performance on court and on wealth off court.</p>
+<div id="geographic-patterns" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> geographic patterns</h3>
+<p>assumption: geographic should affect? common guess: west coast team / larger cities pays higher</p>
+<pre><code>## [1] 0</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>By plotting the geographic plot, we could visualize the salary with respect to the state scale in the US. We chose to only inlcude the median and maximum of salary because we believe that the two measurement are suitable for general players and all stars players respectively. For the median, the three state with highest median of salary is LA, UT, and CO, with NBA team New Orleans Pelicans(LA), Utah Jazz(UT), and Denver Nuggets(CO), which are teams to consider for general players because they are more likely to get paid higher than other teams. For the maximum, the three state with highest maximum of salary is CA, TX, and OR, with NBA team Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), Sacramento Kings(CA), Dallas Mavericks(TX), Houston Rockets(TX), San Antonio Spurs(TX), and Portland Trail Blazers(OR). By looking back to the distribution of salarys with facet on teams, it is noticed that Golden State Warriors(CA), Los Angeles Clippers(CA), Los Angeles Lakers(CA), and Houston Rockets(TX) are good options for all star players because those teams could accept super contract with extremely high salary.</p>
 
+</div>
+</div>
 </div>
             </section>
 

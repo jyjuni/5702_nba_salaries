@@ -3,5 +3,10 @@ data-sources
 data-transformation
 missing-values
 results
+exploratory-analysis
+categorical-data
+numeric-data
+combine-continuous-factors-with-categorical-factors
+geographic-patterns
 interactive-component
 conclusion

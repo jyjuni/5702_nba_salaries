@@ -3,7 +3,7 @@
 By using the Vlookup function in Excel, we first combined the performance data and salary data with the key of player_id, since the two datasets are from the same website and have same encoding of players' ids. Then we combined the race data we scraped with the previous manipulated dataset. First we concacenated the first and last name in the race dataset to form a column with players' names, and splited the Player column in the manipulated dataset with LEFT function to get a PlayName column without players' id, and use the Vlookup with respect to the key PlayerName. After we got all the necessary columns for our dataset, we changed the Salary column type from string into double, and we also changed all the "#N/A" in Race column into NAs that are recognizable by R. Thus, we have our dataset prepared to be analyzed. 
 
 ```{r,warning=FALSE}
-nba <- read_csv("nba_1.csv")
+nba <- read.csv("docs/nba_1.csv")
 nba$Salary <- as.numeric(nba$Salary)
 nba <- nba %>% replace_with_na(replace = list(Race = "#N/A")) #%>% dplyr::filter(is.na(Race)==FALSE)
 ```
