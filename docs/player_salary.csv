@@ -1,0 +1,332 @@
+"Tm","PlayerName","Age","States","Salary"
+"ATL","John Collins",23,"Georgia",2.3e+07
+"ATL","Cam Reddish",21,"Georgia",4670160
+"ATL","De'Andre Hunter",23,"Georgia",7775400
+"ATL","Clint Capela",26,"Georgia",17103448
+"ATL","Kevin Huerter",22,"Georgia",4253357
+"ATL","Bruno Fernando",22,"Georgia",1782621
+"ATL","Kris Dunn",26,"Georgia",5005350
+"ATL","Danilo Gallinari",32,"Georgia",20475000
+"ATL","Trae Young",22,"Georgia",8326471
+"ATL","Tony Snell",29,"Georgia",2389641
+"ATL","Solomon Hill",29,"Georgia",2389641
+"BOS","Tacko Fall",25,"Massachusetts",1669178
+"BOS","Tristan Thompson",29,"Massachusetts",9720900
+"BOS","Marcus Smart",26,"Massachusetts",14339285
+"BOS","Semi Ojeleye",26,"Massachusetts",1789256
+"BOS","Grant Williams",22,"Massachusetts",2617800
+"BOS","Tremont Waters",23,"Massachusetts",1669178
+"BOS","Jaylen Brown",24,"Massachusetts",24830357
+"BOS","Jayson Tatum",22,"Massachusetts",28103550
+"BOS","Kemba Walker",30,"Massachusetts",8729020
+"BOS","Romeo Langford",21,"Massachusetts",3804360
+"BRK","Joe Harris",29,"New York",17357143
+"BRK","Landry Shamet",23,"New York",3768342
+"BRK","Kevin Durant",32,"New York",40918900
+"BRK","Alize Johnson",24,"New York",1729217
+"BRK","Nicolas Claxton",21,"New York",1782621
+"BRK","Kyrie Irving",28,"New York",34916200
+"BRK","Bruce Brown",24,"New York",4736102
+"BRK","Jeff Green",34,"New York",4500000
+"BRK","Spencer Dinwiddie",27,"New York",17142857
+"BRK","DeAndre Jordan",32,"New York",2641691
+"CHI","Garrett Temple",34,"Illinois",4910000
+"CHI","Coby White",20,"Illinois",5837760
+"CHI","Zach LaVine",25,"Illinois",19500000
+"CHI","Lauri Markkanen",23,"Illinois",15690909
+"CHI","Ryan Arcidiacono",26,"Illinois",4789256
+"CHI","Thaddeus Young",32,"Illinois",14190000
+"CHI","Denzel Valentine",27,"Illinois",1789256
+"CHO","Cody Zeller",28,"North Carolina",2389641
+"CHO","Malik Monk",22,"North Carolina",1789256
+"CHO","Gordon Hayward",30,"North Carolina",29900000
+"CHO","Miles Bridges",22,"North Carolina",5421493
+"CHO","P.J. Washington",22,"North Carolina",4215120
+"CHO","Devonte' Graham",25,"North Carolina",1.1e+07
+"CHO","Jalen McDaniels",23,"North Carolina",1782621
+"CHO","Terry Rozier",26,"North Carolina",17905263
+"CHO","Cody Martin",25,"North Carolina",1782621
+"CLE","Cedi Osman",25,"Ohio",8050000
+"CLE","Dean Wade",24,"Ohio",1782621
+"CLE","Dante Exum",25,"Ohio",2500000
+"CLE","Larry Nance Jr.",28,"Ohio",10690909
+"CLE","Dylan Windler",24,"Ohio",2239200
+"CLE","Darius Garland",21,"Ohio",7040880
+"CLE","Kevin Love",32,"Ohio",31300000
+"CLE","Collin Sexton",22,"Ohio",6349671
+"DAL","Josh Richardson",27,"Texas",11600000
+"DAL","Willie Cauley-Stein",27,"Texas",4200000
+"DAL","Dwight Powell",29,"Texas",1.1e+07
+"DAL","Maxi Kleber",29,"Texas",8750000
+"DAL","Tim Hardaway Jr.",28,"Texas",21306816
+"DAL","Dorian Finney-Smith",27,"Texas",4e+06
+"DAL","Jalen Brunson",24,"Texas",1802057
+"DEN","Bol Bol",21,"Colorado",2161152
+"DEN","Nikola Jokióö",25,"Colorado",30510423
+"DEN","JaMychal Green",30,"Colorado",15852431
+"DEN","Michael Porter Jr.",22,"Colorado",5258735
+"DEN","Monte Morris",25,"Colorado",8333333
+"DEN","Paul Millsap",35,"Colorado",2641691
+"DEN","Will Barton",30,"Colorado",30264615
+"DEN","Jamal Murray",23,"Colorado",31590000
+"DET","Rodney McGruder",29,"Michigan",1939350
+"DET","Josh Jackson",23,"Michigan",5005350
+"DET","Sekou Doumbouya",20,"Michigan",0
+"DET","Jerami Grant",26,"Michigan",2e+07
+"DET","Mason Plumlee",30,"Michigan",8137500
+"DET","Frank Jackson",22,"Michigan",3e+06
+"DET","Wayne Ellington",33,"Michigan",2641691
+"GSW","Kelly Oubre Jr.",25,"California",1.2e+07
+"GSW","Gary Payton II",28,"California",1977011
+"GSW","Draymond Green",30,"California",24026712
+"GSW","Mychal Mulder",26,"California",1782621
+"GSW","Damion Lee",28,"California",1910860
+"GSW","Kevon Looney",24,"California",5178572
+"GSW","Jordan Poole",21,"California",2161440
+"GSW","Kent Bazemore",31,"California",2401537
+"GSW","Eric Paschall",24,"California",1782621
+"GSW","Marquese Chriss",23,"California",1789256
+"GSW","Andrew Wiggins",25,"California",31579390
+"GSW","Juan Toscano-Anderson",27,"California",1701593
+"GSW","Stephen Curry",32,"California",45780966
+"HOU","Sterling Brown",25,"Texas",3e+06
+"HOU","Eric Gordon",32,"Texas",18218818
+"HOU","Christian Wood",25,"Texas",13666667
+"HOU","John Wall",30,"Texas",44310840
+"HOU","Kevin Porter Jr.",20,"Texas",2130240
+"IND","T.J. McConnell",28,"Indiana",7500000
+"IND","Jeremy Lamb",28,"Indiana",10500000
+"IND","Myles Turner",24,"Indiana",1.8e+07
+"IND","Malcolm Brogdon",28,"Indiana",21700000
+"IND","T.J. Warren",27,"Indiana",12690000
+"IND","Justin Holiday",31,"Indiana",6006420
+"IND","Kelan Martin",25,"Indiana",1701593
+"IND","Doug McDermott",29,"Indiana",13750000
+"IND","Domantas Sabonis",24,"Indiana",18562500
+"IND","Aaron Holiday",24,"Indiana",3980551
+"IND","Oshae Brissett",22,"Indiana",1701593
+"IND","Goga Bitadze",21,"Indiana",3098400
+"LAC","Ivica Zubac",23,"California",7518518
+"LAC","Luke Kennard",24,"California",12727273
+"LAC","Serge Ibaka",31,"California",9742000
+"LAC","Terance Mann",24,"California",1782621
+"LAC","Reggie Jackson",30,"California",10384500
+"LAC","Paul George",30,"California",39344970
+"LAC","Kawhi Leonard",29,"California",39344900
+"LAC","Nicolas Batum",32,"California",12213507
+"LAC","Patrick Patterson",31,"California",3378757
+"LAC","Patrick Beverley",32,"California",14320988
+"LAL","Talen Horton-Tucker",20,"California",9500000
+"LAL","Kentavious Caldwell-Pope",27,"California",13038862
+"LAL","Devontae Cacok",24,"California",1669178
+"LAL","Anthony Davis",27,"California",35361360
+"LAL","LeBron James",36,"California",41180544
+"LAL","Markieff Morris",31,"California",2641691
+"LAL","Kyle Kuzma",25,"California",1.3e+07
+"LAL","Montrezl Harrell",27,"California",9720900
+"LAL","Alex Caruso",26,"California",8604651
+"MEM","Kyle Anderson",27,"Tennessee",9937150
+"MEM","John Konchar",24,"Tennessee",2197674
+"MEM","Grayson Allen",25,"Tennessee",4054695
+"MEM","Jaren Jackson Jr.",21,"Tennessee",9180560
+"MEM","De'Anthony Melton",22,"Tennessee",8437500
+"MEM","Ja Morant",21,"Tennessee",9603360
+"MEM","Dillon Brooks",25,"Tennessee",12200000
+"MEM","Brandon Clarke",24,"Tennessee",2726880
+"MEM","Tyus Jones",24,"Tennessee",7522200
+"MEM","Justise Winslow",24,"Tennessee",16902439
+"MIA","Dewayne Dedmon",31,"Florida",5256308
+"MIA","Max Strus",24,"Florida",1669178
+"MIA","Jimmy Butler",31,"Florida",36016200
+"MIA","Tyler Herro",21,"Florida",4004280
+"MIA","Udonis Haslem",40,"Florida",2641691
+"MIA","Andre Iguodala",37,"Florida",17641691
+"MIA","Duncan Robinson",26,"Florida",15560000
+"MIA","Kendrick Nunn",25,"Florida",5e+06
+"MIA","Bam Adebayo",23,"Florida",28103550
+"MIA","Gabe Vincent",24,"Florida",1669178
+"MIA","Trevor Ariza",35,"Florida",2641691
+"MIA","KZ Okpala",21,"Florida",1782621
+"MIL","Donte DiVincenzo",24,"Wisconsin",4675830
+"MIL","Jrue Holiday",30,"Wisconsin",30133333
+"MIL","Thanasis Antetokounmpo",28,"Wisconsin",1729217
+"MIL","Khris Middleton",29,"Wisconsin",35500000
+"MIL","Pat Connaughton",28,"Wisconsin",5333333
+"MIL","Giannis Antetokounmpo",26,"Wisconsin",39344970
+"MIL","Brook Lopez",32,"Wisconsin",13302325
+"MIL","Bobby Portis",25,"Wisconsin",8151750
+"MIL","Bryn Forbes",27,"Wisconsin",4500000
+"MIN","Naz Reid",21,"Minnesota",1782621
+"MIN","Karl-Anthony Towns",25,"Minnesota",31610000
+"MIN","Jarrett Culver",21,"Minnesota",6395160
+"MIN","Ricky Rubio",30,"Minnesota",17809524
+"MIN","Jordan McLaughlin",24,"Minnesota",1669178
+"MIN","Jake Layman",26,"Minnesota",3940184
+"MIN","Josh Okogie",22,"Minnesota",4087904
+"MIN","Malik Beasley",24,"Minnesota",14391964
+"MIN","Jaylen Nowell",21,"Minnesota",1782621
+"MIN","Jarred Vanderbilt",21,"Minnesota",4259259
+"MIN","D'Angelo Russell",24,"Minnesota",30013500
+"NOP","Steven Adams",27,"Louisiana",17073171
+"NOP","Zion Williamson",20,"Louisiana",10733400
+"NOP","Brandon Ingram",23,"Louisiana",29467800
+"NOP","Nickeil Alexander-Walker",22,"Louisiana",3261480
+"NOP","Jaxson Hayes",20,"Louisiana",5348280
+"NOP","Lonzo Ball",23,"Louisiana",19767442
+"NOP","Eric Bledsoe",31,"Louisiana",18125000
+"NOP","Josh Hart",25,"Louisiana",1.2e+07
+"NYK","RJ Barrett",20,"New York",8623920
+"NYK","Elfrid Payton",26,"New York",2239544
+"NYK","Alec Burks",29,"New York",9536000
+"NYK","Reggie Bullock",29,"New York",9536000
+"NYK","Theo Pinson",25,"New York",1729217
+"NYK","Julius Randle",26,"New York",19800000
+"NYK","Frank Ntilikina",22,"New York",1789256
+"NYK","Taj Gibson",35,"New York",4910000
+"NYK","Nerlens Noel",26,"New York",8800000
+"NYK","Mitchell Robinson",22,"New York",1802057
+"OKC","Shai Gilgeous-Alexander",22,"Oklahoma",5495532
+"OKC","Ty Jerome",23,"Oklahoma",2412840
+"OKC","Al Horford",34,"Oklahoma",2.7e+07
+"OKC","Moses Brown",21,"Oklahoma",1701593
+"OKC","Isaiah Roby",22,"Oklahoma",1782621
+"OKC","Darius Bazley",20,"Oklahoma",2513040
+"OKC","Luguentz Dort",21,"Oklahoma",1782621
+"OKC","Kenrich Williams",26,"Oklahoma",2e+06
+"OKC","Mike Muscala",29,"Oklahoma",3500000
+"ORL","Michael Carter-Williams",29,"Florida",3e+06
+"ORL","Terrence Ross",29,"Florida",12500000
+"ORL","Markelle Fultz",22,"Florida",16500000
+"ORL","Dwayne Bacon",25,"Florida",1789256
+"ORL","Mo Bamba",22,"Florida",7568742
+"ORL","Chasson Randle",27,"Florida",1789256
+"PHI","Matisse Thybulle",23,"Pennsylvania",2840160
+"PHI","Furkan Korkmaz",23,"Pennsylvania",4629630
+"PHI","Seth Curry",30,"Pennsylvania",8186047
+"PHI","Danny Green",33,"Pennsylvania",1e+07
+"PHI","Dwight Howard",35,"Pennsylvania",2641691
+"PHI","Tobias Harris",28,"Pennsylvania",3.6e+07
+"PHI","Joel Embiid",26,"Pennsylvania",31579390
+"PHI","Ben Simmons",24,"Pennsylvania",31590000
+"PHI","Shake Milton",24,"Pennsylvania",1846738
+"PHO","Devin Booker",24,"Arizona",31610000
+"PHO","Mikal Bridges",24,"Arizona",5557725
+"PHO","Deandre Ayton",22,"Arizona",12632950
+"PHO","Abdel Nader",27,"Arizona",2e+06
+"PHO","Chris Paul",35,"Arizona",30800000
+"PHO","Jae Crowder",30,"Arizona",9720900
+"PHO","Jevon Carter",25,"Arizona",3833333
+"PHO","E'Twaun Moore",31,"Arizona",2641691
+"PHO","Frank Kaminsky",27,"Arizona",2089448
+"PHO","Cameron Johnson",24,"Arizona",4437000
+"POR","Carmelo Anthony",36,"Oregon",2641691
+"POR","Damian Lillard",30,"Oregon",43750000
+"POR","Anfernee Simons",21,"Oregon",3938818
+"POR","CJ McCollum",29,"Oregon",30864198
+"POR","Robert Covington",30,"Oregon",12975471
+"POR","Nassir Little",20,"Oregon",2316240
+"POR","Enes Kanter",28,"Oregon",2641691
+"POR","Derrick Jones Jr.",23,"Oregon",9731707
+"SAC","Kyle Guy",23,"California",1669178
+"SAC","Buddy Hield",28,"California",22477273
+"SAC","Richaun Holmes",27,"California",10384500
+"SAC","Harrison Barnes",28,"California",20284091
+"SAC","Hassan Whiteside",31,"California",2401537
+"SAC","De'Aaron Fox",23,"California",28103550
+"SAC","Chimezie Metu",23,"California",1762796
+"SAC","Marvin Bagley III",21,"California",11312114
+"SAS","Patty Mills",32,"Texas",5890000
+"SAS","Rudy Gay",34,"Texas",5890000
+"SAS","Dejounte Murray",24,"Texas",15428571
+"SAS","Drew Eubanks",23,"Texas",1762796
+"SAS","Trey Lyles",25,"Texas",2500000
+"SAS","DeMar DeRozan",31,"Texas",26984127
+"SAS","Quinndary Weatherspoon",24,"Texas",1669178
+"SAS","Jakob Poeltl",25,"Texas",8750000
+"SAS","Keldon Johnson",21,"Texas",2145720
+"SAS","Keita Bates-Diop",25,"Texas",1729217
+"SAS","Derrick White",26,"Texas",15178571
+"TOR","DeAndre' Bembry",26,"CANADA",1939350
+"TOR","Stanley Johnson",24,"CANADA",2089448
+"TOR","Pascal Siakam",26,"CANADA",31320000
+"TOR","Kyle Lowry",34,"CANADA",26984128
+"TOR","Chris Boucher",28,"CANADA",7009615
+"TOR","OG Anunoby",23,"CANADA",16071429
+"TOR","Fred VanVleet",26,"CANADA",19675926
+"TOR","Yuta Watanabe",26,"CANADA",1762769
+"TOT","Hamidou Diallo",22,"CANADA",5200000
+"TOT","Shaquille Harrison",27,"CANADA",1789256
+"TOT","JaVale McGee",33,"CANADA",5e+06
+"TOT","Troy Brown Jr.",21,"CANADA",5170564
+"TOT","George Hill",34,"CANADA",4e+06
+"TOT","Daniel Gafford",22,"CANADA",1782621
+"TOT","Jarrett Allen",22,"CANADA",2e+07
+"TOT","Al-Farouq Aminu",30,"CANADA",10183800
+"TOT","Moritz Wagner",23,"CANADA",1729217
+"TOT","LaMarcus Aldridge",35,"CANADA",2641691
+"TOT","P.J. Tucker",35,"CANADA",7e+06
+"TOT","Derrick Rose",32,"CANADA",13445120
+"TOT","Norman Powell",27,"CANADA",15517242
+"TOT","Quinn Cook",27,"CANADA",1939350
+"TOT","Maurice Harkless",27,"CANADA",4347600
+"TOT","Gary Harris",26,"CANADA",20482143
+"TOT","Andre Drummond",27,"CANADA",2401537
+"TOT","Daniel Theis",28,"CANADA",8372093
+"TOT","Damian Jones",25,"CANADA",1977011
+"TOT","Gary Clark",26,"CANADA",2100000
+"TOT","D.J. Augustin",33,"CANADA",7e+06
+"TOT","Alex Len",27,"CANADA",3731707
+"TOT","Cory Joseph",29,"CANADA",4910000
+"TOT","Caris LeVert",26,"CANADA",17500000
+"TOT","Dennis Smith Jr.",23,"CANADA",1789256
+"TOT","Khem Birch",28,"CANADA",6350000
+"TOT","James Harden",31,"CANADA",43848000
+"TOT","Taurean Prince",26,"CANADA",15057692
+"TOT","Nemanja Bjelica",32,"CANADA",2089448
+"TOT","Wendell Carter Jr.",21,"CANADA",6920027
+"TOT","Evan Fournier",28,"CANADA",18139535
+"TOT","Tony Bradley",23,"CANADA",1789256
+"TOT","Ben McLemore",27,"CANADA",2389641
+"TOT","Avery Bradley",30,"CANADA",8558441
+"TOT","Isaiah Hartenstein",22,"CANADA",3430810
+"TOT","Chandler Hutchison",24,"CANADA",0
+"TOT","DaQuan Jeffries",23,"CANADA",3370771
+"TOT","Rajon Rondo",34,"CANADA",2641691
+"TOT","Gorgui Dieng",31,"CANADA",4e+06
+"TOT","Torrey Craig",30,"CANADA",4878049
+"TOT","Aaron Gordon",25,"CANADA",16409091
+"TOT","James Johnson",33,"CANADA",2641691
+"TOT","Rodney Hood",28,"CANADA",2239544
+"TOT","Brad Wanamaker",31,"CANADA",3458434
+"TOT","Victor Oladipo",28,"CANADA",2389641
+"TOT","Blake Griffin",31,"CANADA",32405817
+"TOT","Gary Trent Jr.",22,"CANADA",1.6e+07
+"TOT","Matt Thomas",26,"CANADA",1669178
+"TOT","Jabari Parker",25,"CANADA",2283034
+"TOT","Delon Wright",28,"CANADA",8526316
+"TOT","Terence Davis",23,"CANADA",4e+06
+"TOT","D.J. Wilson",24,"CANADA",1789256
+"TOT","Javonte Green",27,"CANADA",1669178
+"TOT","Austin Rivers",28,"CANADA",2401537
+"TOT","Chris Silva",24,"CANADA",1669178
+"TOT","Kelly Olynyk",29,"CANADA",12195122
+"TOT","Lou Williams",34,"CANADA",5e+06
+"UTA","Miye Oni",23,"Utah",1782621
+"UTA","Derrick Favors",29,"Utah",9720900
+"UTA","Jordan Clarkson",28,"Utah",12420000
+"UTA","Georges Niang",27,"Utah",3300000
+"UTA","Joe Ingles",33,"Utah",1.4e+07
+"UTA","Donovan Mitchell",24,"Utah",28103550
+"UTA","Mike Conley",33,"Utah",2.1e+07
+"UTA","Royce O'Neale",27,"Utah",8678571
+"UTA","Rudy Gobert",28,"Utah",35344828
+"WAS","Raul Neto",28,"Washington DC",2089448
+"WAS","Davis Bertans",28,"Washington DC",1.6e+07
+"WAS","Thomas Bryant",23,"Washington DC",8730159
+"WAS","Garrison Mathews",24,"Washington DC",1669178
+"WAS","Ish Smith",32,"Washington DC",4500000
+"WAS","Isaac Bonga",21,"Washington DC",1729217
+"WAS","Robin Lopez",32,"Washington DC",5e+06
+"WAS","Russell Westbrook",32,"Washington DC",44211146
+"WAS","Bradley Beal",27,"Washington DC",34502130
+"WAS","Rui Hachimura",22,"Washington DC",4916160
