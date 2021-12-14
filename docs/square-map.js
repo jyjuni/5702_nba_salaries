@@ -224,7 +224,7 @@ function drawLinechart(selector) {
             .append("div")
             .attr("id", 'key')
             .append('svg')
-            .attr('width', 600)
+            .attr('width', 800)
             .attr('height', 300);
         
         var bgrect = svg.append("rect")
@@ -256,6 +256,47 @@ function drawLinechart(selector) {
     };
 
 
+function add_legend(svg){
+    // legend
+    svg.append("circle").attr("cx",430).attr("cy",80).attr("r", 3.5).style("fill", "white").style("stroke", "grey")
+    svg.append("circle").attr("cx",430).attr("cy",100).attr("r", 3.5).style("fill", "#3e4096")
+    svg.append("text").attr("x", 440).attr("y", 80).text("single player(team, salary)")
+        .style("font-size", "15px").attr("alignment-baseline","middle").style("font-family", "Gill Sans") 
+    svg.append("text").attr("x", 440).attr("y", 100).text("median salary")
+        .style("font-size", "15px").attr("alignment-baseline","middle").style("font-family", "Gill Sans") 
+
+    // title and axis label
+    // x-label
+    svg.append("text")
+        .attr("class", "x-label")
+        .attr("text-anchor", "end")
+        .style("font-size", "13px") 
+        .style("font-family", "Gill Sans")
+        .attr("x", 475)
+        .attr("y", 280)
+        .text("age");
+
+    // y-label
+    svg.append("text")
+        .attr("class", "y-label")
+        .attr("text-anchor", "end")
+        .attr("x", -30)
+        .attr("y", 10)
+        .attr("dy", ".75em")
+        .style("font-size", "13px") 
+        .style("font-family", "Gill Sans")
+        .attr("transform", "rotate(-90)")
+        .text("median salary(millions)");
+
+   svg.append("text")
+        .attr("x", 250)             
+        .attr("y", 30)
+        .attr("text-anchor", "middle") 
+        .style("font-size", "16px") 
+        .style("font-family", "Gill Sans")
+        .text("State Median Salary per Age");
+};
+
 function updateLinechart(selector, agedata, playerdata) {
         
 //        console.log(selector)
@@ -268,44 +309,7 @@ function updateLinechart(selector, agedata, playerdata) {
  
             if(legend == false){
                 
-                // legend
-                svg.append("circle").attr("cx",450).attr("cy",50).attr("r", 3.5).style("fill", "white").style("stroke", "grey")
-                svg.append("circle").attr("cx",450).attr("cy",70).attr("r", 3.5).style("fill", "#3e4096")
-                svg.append("text").attr("x", 460).attr("y", 50).text("single player salary")
-                    .style("font-size", "15px").attr("alignment-baseline","middle").style("font-family", "Gill Sans") 
-                svg.append("text").attr("x", 460).attr("y", 70).text("median salary")
-                    .style("font-size", "15px").attr("alignment-baseline","middle").style("font-family", "Gill Sans") 
-                      
-                // title and axis label
-                // x-label
-                svg.append("text")
-                    .attr("class", "x-label")
-                    .attr("text-anchor", "end")
-                    .style("font-size", "13px") 
-                    .style("font-family", "Gill Sans")
-                    .attr("x", 475)
-                    .attr("y", 280)
-                    .text("age");
-
-                // y-label
-                svg.append("text")
-                    .attr("class", "y-label")
-                    .attr("text-anchor", "end")
-                    .attr("x", -30)
-                    .attr("y", 10)
-                    .attr("dy", ".75em")
-                    .style("font-size", "13px") 
-                    .style("font-family", "Gill Sans")
-                    .attr("transform", "rotate(-90)")
-                    .text("median salary(millions)");
-                
-               svg.append("text")
-                    .attr("x", 250)             
-                    .attr("y", 30)
-                    .attr("text-anchor", "middle") 
-                    .style("font-size", "16px") 
-                    .style("font-family", "Gill Sans")
-                    .text("State Median Salary per Age");
+                add_legend(svg);
 
                 legend = true
             }
@@ -318,6 +322,7 @@ function updateLinechart(selector, agedata, playerdata) {
             agedata = agedata.map(function (r) {return {"age":r["age"], "salary": r["salary"]/1000000}});  
             playerdata = playerdata.map(function (r) {return {"age":r["age"], 
                                                               "salary": r["salary"]/1000000, 
+                                                              "team": r["team"],
                                                               "player_name": r["player_name"]}});  
 
             console.log(playerdata)
@@ -412,7 +417,7 @@ function updateLinechart(selector, agedata, playerdata) {
                 .attr("class", "symbol")
 //                .attr('transform', d => `translate(${xScale(d.age)}, ${yScale(d.salary)})`)
 //    	        .attr('d', symbolGenerator())
-                .attr("r", 3.5)
+                .attr("r", 5)
                 .attr("cx", d => xScale(d.age))
                 .attr("cy", d => yScale(d.salary))
                 .attr("fill", "white")
@@ -434,15 +439,28 @@ function updateLinechart(selector, agedata, playerdata) {
             
             function showName() {
                 var name = d3.select(this).data()[0].player_name
+                var team = d3.select(this).data()[0].team
                 var salary = d3.select(this).data()[0].salary.toFixed(1)
                 var box = this.getBBox();
                 console.log(box, box.x, box.y)
-                g.append("g")
+                var text_node =  g.append("g")
                     .attr('id', 'name_label') // Label the state
+                
+                text_node     
                         .append('text')
-                        .text(`${name}\n(${salary}M)`) // Set the text based on the state and the user's style choice
+                        .text(`${name}(${team})`) // Set the text based on the state and the user's style choice
                         .attr('x', box.x + 12) // Set the x position based on the bounding box
                         .attr('y', box.y + 5) // Set the y position based on the bounding box
+                        .attr('text-anchor', "start") // Center the text horizontally
+                        .attr('alignment-baseline', 'middle') // Center the text vertically
+                        .style('fill', "black") // Color the labels
+                        .style("font-size", "15px") 
+                        .style("font-family", "Gill Sans") 
+                text_node  
+                        .append('text')
+                        .text(`${salary}M`) // Set the text based on the state and the user's style choice
+                        .attr('x', box.x + 12) // Set the x position based on the bounding box
+                        .attr('y', box.y + 20) // Set the y position based on the bounding box
                         .attr('text-anchor', "start") // Center the text horizontally
                         .attr('alignment-baseline', 'middle') // Center the text vertically
                         .style('fill', "black") // Color the labels
