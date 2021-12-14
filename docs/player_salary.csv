@@ -1,5 +1,5 @@
 "Tm","PlayerName","Age","States","Salary"
-"ATL","John Collins",23,"Georgia",2.3e+07
+"ATL","John Collins",23,"Georgia",23000000
 "ATL","Cam Reddish",21,"Georgia",4670160
 "ATL","De'Andre Hunter",23,"Georgia",7775400
 "ATL","Clint Capela",26,"Georgia",17103448
@@ -42,7 +42,7 @@
 "CHO","Gordon Hayward",30,"North Carolina",29900000
 "CHO","Miles Bridges",22,"North Carolina",5421493
 "CHO","P.J. Washington",22,"North Carolina",4215120
-"CHO","Devonte' Graham",25,"North Carolina",1.1e+07
+"CHO","Devonte' Graham",25,"North Carolina",11000000
 "CHO","Jalen McDaniels",23,"North Carolina",1782621
 "CHO","Terry Rozier",26,"North Carolina",17905263
 "CHO","Cody Martin",25,"North Carolina",1782621
@@ -56,10 +56,10 @@
 "CLE","Collin Sexton",22,"Ohio",6349671
 "DAL","Josh Richardson",27,"Texas",11600000
 "DAL","Willie Cauley-Stein",27,"Texas",4200000
-"DAL","Dwight Powell",29,"Texas",1.1e+07
+"DAL","Dwight Powell",29,"Texas",11000000
 "DAL","Maxi Kleber",29,"Texas",8750000
 "DAL","Tim Hardaway Jr.",28,"Texas",21306816
-"DAL","Dorian Finney-Smith",27,"Texas",4e+06
+"DAL","Dorian Finney-Smith",27,"Texas",4000000
 "DAL","Jalen Brunson",24,"Texas",1802057
 "DEN","Bol Bol",21,"Colorado",2161152
 "DEN","Nikola Jokióö",25,"Colorado",30510423
@@ -72,11 +72,11 @@
 "DET","Rodney McGruder",29,"Michigan",1939350
 "DET","Josh Jackson",23,"Michigan",5005350
 "DET","Sekou Doumbouya",20,"Michigan",0
-"DET","Jerami Grant",26,"Michigan",2e+07
+"DET","Jerami Grant",26,"Michigan",20000000
 "DET","Mason Plumlee",30,"Michigan",8137500
-"DET","Frank Jackson",22,"Michigan",3e+06
+"DET","Frank Jackson",22,"Michigan",3000000
 "DET","Wayne Ellington",33,"Michigan",2641691
-"GSW","Kelly Oubre Jr.",25,"California",1.2e+07
+"GSW","Kelly Oubre Jr.",25,"California",12000000
 "GSW","Gary Payton II",28,"California",1977011
 "GSW","Draymond Green",30,"California",24026712
 "GSW","Mychal Mulder",26,"California",1782621
@@ -89,14 +89,14 @@
 "GSW","Andrew Wiggins",25,"California",31579390
 "GSW","Juan Toscano-Anderson",27,"California",1701593
 "GSW","Stephen Curry",32,"California",45780966
-"HOU","Sterling Brown",25,"Texas",3e+06
+"HOU","Sterling Brown",25,"Texas",3000000
 "HOU","Eric Gordon",32,"Texas",18218818
 "HOU","Christian Wood",25,"Texas",13666667
 "HOU","John Wall",30,"Texas",44310840
 "HOU","Kevin Porter Jr.",20,"Texas",2130240
 "IND","T.J. McConnell",28,"Indiana",7500000
 "IND","Jeremy Lamb",28,"Indiana",10500000
-"IND","Myles Turner",24,"Indiana",1.8e+07
+"IND","Myles Turner",24,"Indiana",18000000
 "IND","Malcolm Brogdon",28,"Indiana",21700000
 "IND","T.J. Warren",27,"Indiana",12690000
 "IND","Justin Holiday",31,"Indiana",6006420
@@ -122,7 +122,7 @@
 "LAL","Anthony Davis",27,"California",35361360
 "LAL","LeBron James",36,"California",41180544
 "LAL","Markieff Morris",31,"California",2641691
-"LAL","Kyle Kuzma",25,"California",1.3e+07
+"LAL","Kyle Kuzma",25,"California",13000000
 "LAL","Montrezl Harrell",27,"California",9720900
 "LAL","Alex Caruso",26,"California",8604651
 "MEM","Kyle Anderson",27,"Tennessee",9937150
@@ -142,7 +142,7 @@
 "MIA","Udonis Haslem",40,"Florida",2641691
 "MIA","Andre Iguodala",37,"Florida",17641691
 "MIA","Duncan Robinson",26,"Florida",15560000
-"MIA","Kendrick Nunn",25,"Florida",5e+06
+"MIA","Kendrick Nunn",25,"Florida",5000000
 "MIA","Bam Adebayo",23,"Florida",28103550
 "MIA","Gabe Vincent",24,"Florida",1669178
 "MIA","Trevor Ariza",35,"Florida",2641691
@@ -174,7 +174,7 @@
 "NOP","Jaxson Hayes",20,"Louisiana",5348280
 "NOP","Lonzo Ball",23,"Louisiana",19767442
 "NOP","Eric Bledsoe",31,"Louisiana",18125000
-"NOP","Josh Hart",25,"Louisiana",1.2e+07
+"NOP","Josh Hart",25,"Louisiana",12000000
 "NYK","RJ Barrett",20,"New York",8623920
 "NYK","Elfrid Payton",26,"New York",2239544
 "NYK","Alec Burks",29,"New York",9536000
@@ -187,14 +187,14 @@
 "NYK","Mitchell Robinson",22,"New York",1802057
 "OKC","Shai Gilgeous-Alexander",22,"Oklahoma",5495532
 "OKC","Ty Jerome",23,"Oklahoma",2412840
-"OKC","Al Horford",34,"Oklahoma",2.7e+07
+"OKC","Al Horford",34,"Oklahoma",27000000
 "OKC","Moses Brown",21,"Oklahoma",1701593
 "OKC","Isaiah Roby",22,"Oklahoma",1782621
 "OKC","Darius Bazley",20,"Oklahoma",2513040
 "OKC","Luguentz Dort",21,"Oklahoma",1782621
-"OKC","Kenrich Williams",26,"Oklahoma",2e+06
+"OKC","Kenrich Williams",26,"Oklahoma",2000000
 "OKC","Mike Muscala",29,"Oklahoma",3500000
-"ORL","Michael Carter-Williams",29,"Florida",3e+06
+"ORL","Michael Carter-Williams",29,"Florida",3000000
 "ORL","Terrence Ross",29,"Florida",12500000
 "ORL","Markelle Fultz",22,"Florida",16500000
 "ORL","Dwayne Bacon",25,"Florida",1789256
@@ -203,16 +203,16 @@
 "PHI","Matisse Thybulle",23,"Pennsylvania",2840160
 "PHI","Furkan Korkmaz",23,"Pennsylvania",4629630
 "PHI","Seth Curry",30,"Pennsylvania",8186047
-"PHI","Danny Green",33,"Pennsylvania",1e+07
+"PHI","Danny Green",33,"Pennsylvania",10000000
 "PHI","Dwight Howard",35,"Pennsylvania",2641691
-"PHI","Tobias Harris",28,"Pennsylvania",3.6e+07
+"PHI","Tobias Harris",28,"Pennsylvania",36000000
 "PHI","Joel Embiid",26,"Pennsylvania",31579390
 "PHI","Ben Simmons",24,"Pennsylvania",31590000
 "PHI","Shake Milton",24,"Pennsylvania",1846738
 "PHO","Devin Booker",24,"Arizona",31610000
 "PHO","Mikal Bridges",24,"Arizona",5557725
 "PHO","Deandre Ayton",22,"Arizona",12632950
-"PHO","Abdel Nader",27,"Arizona",2e+06
+"PHO","Abdel Nader",27,"Arizona",2000000
 "PHO","Chris Paul",35,"Arizona",30800000
 "PHO","Jae Crowder",30,"Arizona",9720900
 "PHO","Jevon Carter",25,"Arizona",3833333
@@ -256,15 +256,15 @@
 "TOR","Yuta Watanabe",26,"CANADA",1762769
 "TOT","Hamidou Diallo",22,"CANADA",5200000
 "TOT","Shaquille Harrison",27,"CANADA",1789256
-"TOT","JaVale McGee",33,"CANADA",5e+06
+"TOT","JaVale McGee",33,"CANADA",5000000
 "TOT","Troy Brown Jr.",21,"CANADA",5170564
-"TOT","George Hill",34,"CANADA",4e+06
+"TOT","George Hill",34,"CANADA",4000000
 "TOT","Daniel Gafford",22,"CANADA",1782621
-"TOT","Jarrett Allen",22,"CANADA",2e+07
+"TOT","Jarrett Allen",22,"CANADA",20000000
 "TOT","Al-Farouq Aminu",30,"CANADA",10183800
 "TOT","Moritz Wagner",23,"CANADA",1729217
 "TOT","LaMarcus Aldridge",35,"CANADA",2641691
-"TOT","P.J. Tucker",35,"CANADA",7e+06
+"TOT","P.J. Tucker",35,"CANADA",7000000
 "TOT","Derrick Rose",32,"CANADA",13445120
 "TOT","Norman Powell",27,"CANADA",15517242
 "TOT","Quinn Cook",27,"CANADA",1939350
@@ -274,7 +274,7 @@
 "TOT","Daniel Theis",28,"CANADA",8372093
 "TOT","Damian Jones",25,"CANADA",1977011
 "TOT","Gary Clark",26,"CANADA",2100000
-"TOT","D.J. Augustin",33,"CANADA",7e+06
+"TOT","D.J. Augustin",33,"CANADA",7000000
 "TOT","Alex Len",27,"CANADA",3731707
 "TOT","Cory Joseph",29,"CANADA",4910000
 "TOT","Caris LeVert",26,"CANADA",17500000
@@ -292,7 +292,7 @@
 "TOT","Chandler Hutchison",24,"CANADA",0
 "TOT","DaQuan Jeffries",23,"CANADA",3370771
 "TOT","Rajon Rondo",34,"CANADA",2641691
-"TOT","Gorgui Dieng",31,"CANADA",4e+06
+"TOT","Gorgui Dieng",31,"CANADA",4000000
 "TOT","Torrey Craig",30,"CANADA",4878049
 "TOT","Aaron Gordon",25,"CANADA",16409091
 "TOT","James Johnson",33,"CANADA",2641691
@@ -300,33 +300,33 @@
 "TOT","Brad Wanamaker",31,"CANADA",3458434
 "TOT","Victor Oladipo",28,"CANADA",2389641
 "TOT","Blake Griffin",31,"CANADA",32405817
-"TOT","Gary Trent Jr.",22,"CANADA",1.6e+07
+"TOT","Gary Trent Jr.",22,"CANADA",16000000
 "TOT","Matt Thomas",26,"CANADA",1669178
 "TOT","Jabari Parker",25,"CANADA",2283034
 "TOT","Delon Wright",28,"CANADA",8526316
-"TOT","Terence Davis",23,"CANADA",4e+06
+"TOT","Terence Davis",23,"CANADA",4000000
 "TOT","D.J. Wilson",24,"CANADA",1789256
 "TOT","Javonte Green",27,"CANADA",1669178
 "TOT","Austin Rivers",28,"CANADA",2401537
 "TOT","Chris Silva",24,"CANADA",1669178
 "TOT","Kelly Olynyk",29,"CANADA",12195122
-"TOT","Lou Williams",34,"CANADA",5e+06
+"TOT","Lou Williams",34,"CANADA",5000000
 "UTA","Miye Oni",23,"Utah",1782621
 "UTA","Derrick Favors",29,"Utah",9720900
 "UTA","Jordan Clarkson",28,"Utah",12420000
 "UTA","Georges Niang",27,"Utah",3300000
-"UTA","Joe Ingles",33,"Utah",1.4e+07
+"UTA","Joe Ingles",33,"Utah",14000000
 "UTA","Donovan Mitchell",24,"Utah",28103550
-"UTA","Mike Conley",33,"Utah",2.1e+07
+"UTA","Mike Conley",33,"Utah",21000000
 "UTA","Royce O'Neale",27,"Utah",8678571
 "UTA","Rudy Gobert",28,"Utah",35344828
 "WAS","Raul Neto",28,"Washington DC",2089448
-"WAS","Davis Bertans",28,"Washington DC",1.6e+07
+"WAS","Davis Bertans",28,"Washington DC",16000000
 "WAS","Thomas Bryant",23,"Washington DC",8730159
 "WAS","Garrison Mathews",24,"Washington DC",1669178
 "WAS","Ish Smith",32,"Washington DC",4500000
 "WAS","Isaac Bonga",21,"Washington DC",1729217
-"WAS","Robin Lopez",32,"Washington DC",5e+06
+"WAS","Robin Lopez",32,"Washington DC",5000000
 "WAS","Russell Westbrook",32,"Washington DC",44211146
 "WAS","Bradley Beal",27,"Washington DC",34502130
 "WAS","Rui Hachimura",22,"Washington DC",4916160

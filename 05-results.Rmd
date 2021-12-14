@@ -285,6 +285,10 @@ We will inspect relationships between geographical factors and player salary fur
 ```{r}
 ## Export Data for Part 6
 
+# disable scitific computing 
+df_players <- df_states %>% select(Tm, PlayerName, Age, States, Salary) %>%  as.data.frame() %>% mutate_if(is.numeric, as.integer)
+write.csv(df_players,"docs/player_salary.csv", row.names = FALSE)
+
 # calculate salary for each age per state
 df_states_age_median <- df_states %>% as.data.frame()  %>% group_by(States,Age) %>% summarize(Mean_Salary = median(Salary))
 df_states_age_max <- df_states %>% as.data.frame()  %>% group_by(States,Age) %>% summarize(Mean_Salary = max(Salary))

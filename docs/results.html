@@ -111,8 +111,8 @@
 <div id="categorical-data" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Categorical Data</h2>
 <p>First of all, we are going to explore within the categorical variables. The first categorical variable we care about is Tm, which represents which team a player belongs to.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" alt="Ridge plot of salary distribution in each team. " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" alt="Ridge plot of salary distribution in each team. " width="672" />
 <p class="caption">
 Figure 5.1: Ridge plot of salary distribution in each team.
 </p>
@@ -120,22 +120,22 @@ Figure 5.1: Ridge plot of salary distribution in each team.
 <p>From the ridge plot(Figure 5.1) above, it is noticed that most teams in the league have a bi-cluster distribution of players’ salary in the team, because there are salary caps in the league, so team managers have to distribute the total salary wisely instead of hiring all top players in the league. In fact, the bi-cluster is because in each team, there are a few great players with high salary, but there must be some players that are paid less because of the salary cap.</p>
 <p>Overally , the three teams that tend to pay players highest salary are Houston Rocket, Milwaukee Bucks, and Denver Nuggets.</p>
 <p>Then the categorical variables left are race and position. However, we decide to include players’ age in this part by binning the numeric variable Age into four bins, which is shown below(Figure 5.2). In this way we have analyzed all off-court factors, i.e. factors other than players’ performance on court. By plotting the overall categorical distribution, it is noticd that more than 80% of players in the NBA league are black or mixed and are in an interval of age between 23 and 35. Also, players are roughly even-distributed in positon, which makes sense because every position shares similar necessity and importance in each team. No team could play with five centers or five point guards on court.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" alt="Distribution of categorical variables. " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" alt="Distribution of categorical variables. " width="672" />
 <p class="caption">
 Figure 5.2: Distribution of categorical variables.
 </p>
 </div>
 <p>By looking closer into the distibution of salary in each race(Figure 5.3), it is notived that the distributions share similar range and shape, which means that the NBA league and teams in the league have no preference of race, and race is not an influential factor in deciding players’ salary.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" alt="Distribution of salary in each race. " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" alt="Distribution of salary in each race. " width="672" />
 <p class="caption">
 Figure 5.3: Distribution of salary in each race.
 </p>
 </div>
 <p>Then we will analyze the effect of age and position.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" alt="Alluvial graph of posistion, age interval, and salary interval. " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" alt="Alluvial graph of posistion, age interval, and salary interval. " width="672" />
 <p class="caption">
 Figure 5.4: Alluvial graph of posistion, age interval, and salary interval.
 </p>
@@ -145,15 +145,15 @@ Figure 5.4: Alluvial graph of posistion, age interval, and salary interval.
 <div id="numeric-data" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Numeric Data</h2>
 First, we plot a parallel coordinates(Figure 5.5) in order to view the general trend of player’s performance with different levels of salary. It is noticed that most players’ performance data follow a general trend even with different levels of salary, and the pattern is obvious. Therefore, we are more confident that our result could be applied to the whole league instead of only a few teams or players.
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" alt="Parallel coordinates of numerical variables. " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" alt="Parallel coordinates of numerical variables. " width="672" />
 <p class="caption">
 Figure 5.5: Parallel coordinates of numerical variables.
 </p>
 </div>
 <p>Then we explore the correlation between those numeric factors, which is shown below(Figure 5.6).</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" alt="Pairwise correlation matrix between numerical variables. " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" alt="Pairwise correlation matrix between numerical variables. " width="672" />
 <p class="caption">
 Figure 5.6: Pairwise correlation matrix between numerical variables.
 </p>
@@ -164,8 +164,8 @@ OBPM(Offensive Box Plus/Minus): the overall contribution to the team’s offense
 WS(Win Share): individual’s credit to team success.
 USG%(Usage Rate): the percentage of team plays the player.
 AST%(Assist Percentage): the percentage of made shots by teammates were assisted by the player.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" alt="Scatterplot between salary and its most correlated numerical variables individualy with linear regression abline.  " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-37-1.png" alt="Scatterplot between salary and its most correlated numerical variables individualy with linear regression abline.  " width="672" />
 <p class="caption">
 Figure 5.7: Scatterplot between salary and its most correlated numerical variables individualy with linear regression abline.
 </p>
@@ -175,8 +175,8 @@ Figure 5.7: Scatterplot between salary and its most correlated numerical variabl
 </div>
 <div id="combine-continuous-factors-with-categorical-factors" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Combine Continuous Factors With Categorical Factors</h2>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" alt="Scatterplot between salary and VORP with linear regression abline and colored by groups from 4 categorical variables.  " width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-38"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-38-1.png" alt="Scatterplot between salary and VORP with linear regression abline and colored by groups from 4 categorical variables.  " width="672" />
 <p class="caption">
 Figure 5.8: Scatterplot between salary and VORP with linear regression abline and colored by groups from 4 categorical variables.
 </p>
@@ -187,8 +187,8 @@ Figure 5.8: Scatterplot between salary and VORP with linear regression abline an
 <h2><span class="header-section-number">5.4</span> Geographic Patterns</h2>
 <p>Assumption: Geographic factors will affect salary.<br />
 Common guess: West coast team and larger cities pays higher.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
-<img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" alt="Geographic plot of salary median and maximum in each state in the US. " width="2000px" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-40"></span>
+<img src="finalproj_files/figure-html/unnamed-chunk-40-1.png" alt="Geographic plot of salary median and maximum in each state in the US. " width="1500px" />
 <p class="caption">
 Figure 5.9: Geographic plot of salary median and maximum in each state in the US.
 </p>
